@@ -1,6 +1,7 @@
 .food {
   padding: var(--section-spacing) var(--gutter);
-  background: var(--warm-white);
+  background: rgba(255, 253, 248, 0.6);
+  backdrop-filter: blur(20px);
   position: relative;
 }
 
@@ -26,9 +27,9 @@
   margin-bottom: var(--space-6);
   color: var(--navy);
   font-weight: 400;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.03em;  /* Tight for luxury serif */
   text-transform: uppercase;
-  line-height: 1.1;
+  line-height: 0.9;
   overflow-wrap: break-word;
 }
 
@@ -38,6 +39,7 @@
   color: var(--color-text-muted);
   margin-bottom: var(--space-8);
   max-width: 640px;
+  font-family: var(--font-body);
 }
 
 .food-categories {
@@ -50,14 +52,14 @@
 .category-pill {
   padding: 0.625rem 1.25rem;
   font-size: 0.8125rem;
-  font-family: var(--font-body);
+  font-family: var(--font-ui);
   color: var(--navy);
   background: white;
   border-radius: var(--radius-full);
   border: 1.5px solid var(--line);
   transition: all var(--duration-sm) var(--ease-out);
   font-weight: 500;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   white-space: nowrap;
   min-height: 44px;
@@ -104,9 +106,10 @@
 .item-name {
   font-size: var(--text-lg);
   color: var(--navy);
-  font-weight: 600;
+  font-weight: 500;
   line-height: var(--leading-snug);
   margin-bottom: 2px;
+  font-family: var(--font-body);
 }
 
 .item-timing {

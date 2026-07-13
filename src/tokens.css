@@ -44,12 +44,18 @@
   --color-action-hover: var(--blue);
   --color-border: var(--line);
 
-  /* Typography — Families */
-  --font-body: 'Libre Baskerville', Georgia, serif;           /* Body text - elegant serif */
-  --font-heading: 'Cormorant Garamond', Georgia, serif;       /* Headings - similar to Bezoria/Elegant */
-  --font-display: 'Cinzel', Georgia, serif;                   /* Display/Strong - all caps friendly */
-  --font-label: 'Tenor Sans', sans-serif;                     /* Labels - clean and modern */
-  --font-script: 'Praise', cursive;                           /* Script/Praise */
+  /* Typography — Families - Luxury Editorial System */
+  /* Display: High-contrast fashion serif for major headings */
+  --font-display: "Bodoni Moda", serif;
+  
+  /* Body: Readable elegant serif for paragraphs and longer text */
+  --font-body: "Cormorant Garamond", Georgia, serif;
+  
+  /* UI: Clean sans-serif for navigation, buttons, labels */
+  --font-ui: "Tenor Sans", system-ui, sans-serif;
+  
+  /* Impact: Condensed bold for marquee text (if needed later) */
+  --font-impact: "Arial Narrow", "Helvetica Condensed", sans-serif;
 
   /* Typography — Editorial Scale */
   --text-xs: 0.75rem;      /* 12px - metadata */

@@ -14,8 +14,8 @@
   top: 0;
   height: 50%;
   transform-origin: 0 100%;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  font-family: var(--font-label);
+  letter-spacing: 0.1em;
+  font-family: var(--font-ui);
 }

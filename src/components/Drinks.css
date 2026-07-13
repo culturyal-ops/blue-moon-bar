@@ -1,6 +1,7 @@
 .drinks {
   padding: var(--section-spacing) var(--gutter);
-  background: var(--ice);
+  background: rgba(237, 245, 252, 0.5);
+  backdrop-filter: blur(20px);
   position: relative;
 }
 
@@ -42,9 +43,9 @@
   margin-bottom: var(--space-6);
   color: var(--navy);
   font-weight: 400;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.03em;  /* Tight for luxury serif */
   text-transform: uppercase;
-  line-height: 1.1;
+  line-height: 0.9;
   overflow-wrap: break-word;
 }
 
@@ -54,6 +55,7 @@
   margin-bottom: var(--space-10);
   line-height: var(--leading-relaxed);
   max-width: 640px;
+  font-family: var(--font-body);
 }
 
 .drinks-categories {
@@ -70,10 +72,11 @@
   font-size: var(--text-2xl);
   color: var(--deep-blue);
   margin-bottom: var(--space-5);
-  font-weight: 600;
+  font-weight: 500;
   font-family: var(--font-display);
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.02em;
+  line-height: 1;
 }
 
 .drinks-items {
@@ -104,6 +107,7 @@
   color: var(--navy);
   line-height: var(--leading-relaxed);
   font-weight: 400;
+  font-family: var(--font-body);
 }
 
 /* ── Tablet ── */
