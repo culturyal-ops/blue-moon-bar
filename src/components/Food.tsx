@@ -43,13 +43,26 @@ export default function Food() {
               </p>
             </ScrollReveal>
 
-            <ScrollReveal index={2}>
+            {/* Image appears here on mobile, before categories */}
+            <div className="food-visual food-visual-mobile">
+              <ScrollReveal index={2} className="food-image-wrapper">
+                <img
+                  src="/dining-room.jpg.png"
+                  alt="Blue Moon dining experience showing the restaurant interior with warm lighting and dining tables"
+                  className="food-image"
+                />
+              </ScrollReveal>
+            </div>
+
+            <ScrollReveal index={3}>
               <div className="food-categories">
                 {categories.map((category) => (
                   <button
                     key={category}
+                    type="button"
                     className={`category-pill ${activeCategory === category ? 'active' : ''}`}
                     onClick={() => setActiveCategory(category)}
+                    aria-pressed={activeCategory === category}
                   >
                     {category}
                   </button>
@@ -59,7 +72,7 @@ export default function Food() {
 
             <div className="food-items-list">
               {filteredItems().map((item, index) => (
-                <ScrollReveal key={`${item?.name}-${index}`} index={Math.min(index + 3, 15)}>
+                <ScrollReveal key={`${item?.name}-${index}`} index={Math.min(index + 4, 16)}>
                   <div className="food-list-item">
                     <div className="item-info">
                       <h3 className="item-name">{item?.name}</h3>
@@ -77,11 +90,12 @@ export default function Food() {
             </div>
           </div>
 
-          <div className="food-visual">
+          {/* Desktop-only visual column */}
+          <div className="food-visual food-visual-desktop">
             <ScrollReveal index={0} className="food-image-wrapper">
               <img
                 src="/dining-room.jpg.png"
-                alt="Blue Moon dining experience"
+                alt="Blue Moon dining experience showing the restaurant interior with warm lighting and dining tables"
                 className="food-image"
               />
             </ScrollReveal>

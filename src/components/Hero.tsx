@@ -1,10 +1,11 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { useId } from 'react';
+import { motion } from 'framer-motion';
 import BackgroundVideo from './BackgroundVideo';
 import './Hero.css';
 
 export default function Hero() {
-  const shouldReduceMotion = useReducedMotion();
-
+  const circlePathId = useId();
+  
   const scrollToVisit = () =>
     document.getElementById('visit')?.scrollIntoView({ behavior: 'smooth' });
   const scrollToFood = () =>
@@ -32,13 +33,14 @@ export default function Hero() {
           <svg className="hero-circular-text" viewBox="0 0 200 200" width="200" height="200">
             <defs>
               <path
-                id="circlePath"
+                id={circlePathId}
+                fill="none"
                 d="M 100, 100 m -85, 0 a 85,85 0 1,1 170,0 a 85,85 0 1,1 -170,0"
               />
             </defs>
             <circle cx="100" cy="100" r="85" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5" />
             <text className="hero-circular-text-letters">
-              <textPath href="#circlePath" startOffset="0%">
+              <textPath href={`#${circlePathId}`} startOffset="0%">
                 BAR & KITCHEN · PALA · BLUE MOON · 
               </textPath>
             </text>
@@ -52,24 +54,52 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.7 }}
         >
-          <button className="hero-cta-card" onClick={scrollToFood}>
+          <button
+            type="button"
+            className="hero-cta-card"
+            onClick={scrollToFood}
+          >
             <div className="cta-card-text">
               <span className="cta-card-title">EXPLORE MENU</span>
               <span className="cta-card-desc">View food and drinks</span>
             </div>
-            <svg className="cta-card-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
+            <svg
+              aria-hidden="true"
+              focusable="false"
+              className="cta-card-icon"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </button>
 
-          <button className="hero-cta-card" onClick={scrollToVisit}>
+          <button
+            type="button"
+            className="hero-cta-card"
+            onClick={scrollToVisit}
+          >
             <div className="cta-card-text">
               <span className="cta-card-title">VISIT US</span>
               <span className="cta-card-desc">Get directions</span>
             </div>
-            <svg className="cta-card-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-              <circle cx="12" cy="10" r="3"/>
+            <svg
+              aria-hidden="true"
+              focusable="false"
+              className="cta-card-icon"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
             </svg>
           </button>
         </motion.div>
@@ -81,11 +111,19 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.7 }}
         >
-          <button className="hero-cta hero-cta-primary" onClick={scrollToFood}>
+          <button
+            type="button"
+            className="hero-cta hero-cta-primary"
+            onClick={scrollToFood}
+          >
             <span>View Menu</span>
           </button>
 
-          <button className="hero-cta hero-cta-secondary" onClick={scrollToVisit}>
+          <button
+            type="button"
+            className="hero-cta hero-cta-secondary"
+            onClick={scrollToVisit}
+          >
             <span>Get Directions</span>
           </button>
         </motion.div>
