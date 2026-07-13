@@ -44,18 +44,42 @@
   --color-action-hover: var(--blue);
   --color-border: var(--line);
 
-  /* Typography — Families - Luxury Editorial System */
-  /* Display: High-contrast fashion serif for major headings */
-  --font-display: "Bodoni Moda", serif;
+  /* ═══════════════════════════════════════════════════════════
+     TYPOGRAPHY — BLUE MOON CUSTOM PAIRING
+     ═══════════════════════════════════════════════════════════
+     
+     Based on "Free Quality Fonts" & "Canva Font Pairings"
+     
+     → SECTION TITLES: League Spartan (MESHED Display alternative)
+       Bold, geometric, ultra-clean for all section headers
+       
+     → HERO/WELCOME: Cinzel (HUMANE alternative)  
+       Elegant, condensed serif for "Blue Moon" and welcome text
+       
+     → BODY TEXT: Cormorant Garamond
+       Readable elegant serif for descriptions
+       
+     → ACCENT/SCRIPT: Libre Baskerville (italic)
+       For special callouts and decorative elements
+       
+     → UI ELEMENTS: Quicksand
+       Soft, rounded sans for buttons and navigation
+     ═══════════════════════════════════════════════════════════ */
+
+  /* Section Titles - Bold geometric (like MESHED Display) */
+  --font-display: "League Spartan", "Impact", sans-serif;
   
-  /* Body: Readable elegant serif for paragraphs and longer text */
+  /* Hero/Logo - Elegant condensed serif (like HUMANE) */
+  --font-hero: "Cinzel", "Didot", serif;
+  
+  /* Accent/Decorative - Elegant serif italic */
+  --font-accent: "Libre Baskerville", Georgia, serif;
+  
+  /* Body - Readable serif for descriptions */
   --font-body: "Cormorant Garamond", Georgia, serif;
   
-  /* UI: Clean sans-serif for navigation, buttons, labels */
-  --font-ui: "Tenor Sans", system-ui, sans-serif;
-  
-  /* Impact: Condensed bold for marquee text (if needed later) */
-  --font-impact: "Arial Narrow", "Helvetica Condensed", sans-serif;
+  /* UI - Soft rounded sans for buttons, nav */
+  --font-ui: "Quicksand", system-ui, sans-serif;
 
   /* Typography — Editorial Scale */
   --text-xs: 0.75rem;      /* 12px - metadata */

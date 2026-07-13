@@ -26,10 +26,10 @@
   font-family: var(--font-display);
   margin-bottom: var(--space-6);
   color: var(--navy);
-  font-weight: 400;
-  letter-spacing: -0.03em;  /* Tight for luxury serif */
+  font-weight: 700;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-  line-height: 0.9;
+  line-height: 0.95;
   overflow-wrap: break-word;
 }
 
@@ -63,6 +63,8 @@
   text-transform: uppercase;
   white-space: nowrap;
   min-height: 44px;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .category-pill:hover {
@@ -188,23 +190,33 @@
   }
 
   .food-categories {
+    display: flex;
     overflow-x: auto;
     flex-wrap: nowrap;
     padding-bottom: var(--space-3);
     gap: var(--space-2);
+    margin-left: calc(-1 * var(--gutter));
+    margin-right: calc(-1 * var(--gutter));
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
     /* Hide scrollbar but keep functionality */
     scrollbar-width: none;
     -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
   }
 
-  .food-categories::-webkit-scrollbar { display: none; }
+  .food-categories::-webkit-scrollbar { 
+    display: none; 
+  }
 
   .category-pill {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.125rem;
     font-size: 0.75rem;
-    min-height: 36px;
+    min-height: 40px;
     flex-shrink: 0;
+    /* Ensure smooth touch interaction */
+    touch-action: pan-x;
   }
 
   .food-items-list {

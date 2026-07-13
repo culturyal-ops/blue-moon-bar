@@ -1,5 +1,5 @@
 /* ────────────────────────────────────────────────────────────
-   Hero — Responsive slideshow background + CTA
+   Hero — Optimized for video timelapse background
    ──────────────────────────────────────────────────────────── */
 
 .hero {
@@ -16,80 +16,111 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  /* Top padding clears the fixed nav (64px) */
+  justify-content: space-between;
   padding: calc(64px + 2rem) var(--gutter) clamp(2rem, 6vw, 4rem);
-  gap: clamp(1.5rem, 4vw, 3rem);
 }
 
-/* ── Rotating circular text — scales via clamp ── */
-.hero-rotating .circular-text {
-  width: clamp(180px, 28vw, 320px);
-  height: clamp(180px, 28vw, 320px);
+/* ── Center brand/logo ── */
+.hero-brand {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--space-3);
 }
 
-.hero-rotating .circular-text-letter {
-  font-size: clamp(0.7rem, 1.1vw, 1rem);
-  font-family: var(--font-display);
-  font-weight: 900;
-  letter-spacing: 0.08em;
+.hero-logo {
+  font-family: var(--font-hero);
+  font-size: clamp(3.5rem, 12vw, 8rem);
+  font-weight: 600;
+  line-height: 0.85;
+  letter-spacing: 0.02em;
   color: var(--warm-white);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  margin: 0;
 }
 
-/* ── Two equal CTA boxes ── */
+.hero-tagline {
+  font-family: var(--font-ui);
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 253, 248, 0.9);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+/* ── Glassmorphism CTAs at bottom ── */
 .hero-ctas {
   display: flex;
   gap: var(--space-4);
   width: 100%;
-  max-width: 580px;
+  max-width: 480px;
+  z-index: 3;
 }
 
 .hero-cta {
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: var(--space-5) var(--space-5);
-  background: rgba(7, 24, 44, 0.85);
-  border: 1px solid rgba(255, 253, 248, 0.2);
-  border-radius: 2px;
-  cursor: pointer;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  min-height: 64px;
-}
-
-.hero-cta:hover  { opacity: 0.9; transform: translateY(-1px); }
-.hero-cta:active { opacity: 0.8; transform: translateY(0); }
-
-.cta-content {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  text-align: left;
-}
-
-.cta-title {
-  font-family: var(--font-label);
-  font-size: clamp(0.8125rem, 1.5vw, 0.9375rem);
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  font-family: var(--font-ui);
+  font-size: clamp(0.875rem, 1.8vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 56px;
+  border: 1px solid rgba(255, 253, 248, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.hero-cta-primary {
+  background: rgba(255, 253, 248, 0.95);
+  color: var(--navy);
+  border-color: rgba(255, 253, 248, 0.95);
+}
+
+.hero-cta-primary:hover {
+  background: var(--warm-white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.hero-cta-secondary {
+  background: rgba(7, 24, 44, 0.25);
   color: var(--warm-white);
+  border-color: rgba(255, 253, 248, 0.3);
 }
 
-.cta-subtitle {
-  font-family: var(--font-body);
-  font-size: clamp(0.6875rem, 1.2vw, 0.8125rem);
-  color: rgba(255, 253, 248, 0.6);
+.hero-cta-secondary:hover {
+  background: rgba(7, 24, 44, 0.45);
+  border-color: rgba(255, 253, 248, 0.5);
+  transform: translateY(-2px);
 }
 
-.hero-cta svg {
-  flex-shrink: 0;
-  color: rgba(255, 253, 248, 0.6);
+.hero-cta:active {
+  transform: translateY(0);
 }
 
 /* ── Mobile ── */
 @media (max-width: 768px) {
+  .hero-logo {
+    font-size: clamp(2.5rem, 14vw, 4rem);
+  }
+
+  .hero-tagline {
+    font-size: 0.8125rem;
+    letter-spacing: 0.12em;
+  }
+
   .hero-ctas {
     flex-direction: column;
     max-width: 100%;
@@ -97,20 +128,29 @@
   }
 
   .hero-cta {
-    padding: var(--space-4) var(--space-5);
+    padding: 0.875rem 1.25rem;
+    min-height: 52px;
   }
 }
 
-/* ── Landscape mobile — reduce gap ── */
+/* ── Landscape mobile ── */
 @media (max-height: 500px) and (orientation: landscape) {
   .hero-container {
-    gap: 1rem;
     padding-top: 72px;
+    justify-content: center;
+    gap: var(--space-6);
   }
 
-  .hero-rotating .circular-text {
-    width: 140px;
-    height: 140px;
+  .hero-brand {
+    flex: 0;
+  }
+
+  .hero-logo {
+    font-size: clamp(2rem, 10vh, 3rem);
+  }
+
+  .hero-ctas {
+    flex-direction: row;
   }
 }
 
@@ -119,6 +159,4 @@
     animation: none !important;
     transition: none !important;
   }
-
-  .hero-rotating { display: none; }
 }
