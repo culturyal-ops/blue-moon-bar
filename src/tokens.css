@@ -45,11 +45,11 @@
   --color-border: var(--line);
 
   /* Typography — Families */
-  --font-body: 'Arimo', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-heading: 'Arimo', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-display: 'Anton', system-ui, -apple-system, sans-serif;
-  --font-label: 'Arimo', system-ui, -apple-system, sans-serif;
-  --font-editorial: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'DM Serif Display', Georgia, serif;
+  --font-heading: 'Bodoni Moda', Georgia, serif;
+  --font-display: 'Bebas Neue', 'Impact', sans-serif;
+  --font-label: 'Cinzel', Georgia, serif;
+  --font-editorial: 'Bodoni Moda', Georgia, serif;
 
   /* Typography — Editorial Scale */
   --text-xs: 0.75rem;      /* 12px - metadata */

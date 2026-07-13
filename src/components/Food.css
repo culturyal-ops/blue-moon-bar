@@ -170,18 +170,60 @@
 
 /* ── Mobile ── */
 @media (max-width: 768px) {
+  .food {
+    padding: var(--space-9) var(--gutter);
+  }
+
+  .food-title {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+    margin-bottom: var(--space-5);
+  }
+
+  .food-description {
+    font-size: 1rem;
+    margin-bottom: var(--space-6);
+  }
+
   .food-categories {
     overflow-x: auto;
     flex-wrap: nowrap;
     padding-bottom: var(--space-3);
+    gap: var(--space-2);
     /* Hide scrollbar but keep functionality */
     scrollbar-width: none;
     -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
   }
 
   .food-categories::-webkit-scrollbar { display: none; }
 
-  .item-name { font-size: var(--text-base); }
+  .category-pill {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    min-height: 36px;
+    flex-shrink: 0;
+  }
+
+  .food-items-list {
+    margin-top: var(--space-4);
+  }
+
+  .food-list-item {
+    padding: var(--space-3) 0;
+  }
+
+  .item-name { 
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .item-timing {
+    font-size: 0.75rem;
+  }
+
+  .food-visual {
+    margin-top: var(--space-6);
+  }
 }
 
 @media (max-width: 430px) {

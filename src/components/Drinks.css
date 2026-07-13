@@ -133,11 +133,49 @@
 }
 
 /* ── Mobile ── */
-@media (max-width: 640px) {
-  .drinks-category-name { font-size: var(--text-xl); }
+@media (max-width: 768px) {
+  .drinks {
+    padding: var(--space-9) var(--gutter);
+  }
+
+  .drinks-title {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+    margin-bottom: var(--space-5);
+  }
+
+  .drinks-description {
+    font-size: 1rem;
+    margin-bottom: var(--space-7);
+  }
+
+  .drinks-categories {
+    gap: var(--space-6);
+  }
+
+  .drinks-category {
+    padding: var(--space-5) 0;
+  }
+
+  .drinks-category-name { 
+    font-size: 1.5rem;
+    margin-bottom: var(--space-4);
+  }
 
   .drinks-items {
     grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+
+  .drinks-item {
+    padding: var(--space-2) 0;
+  }
+
+  .drinks-item-name {
+    font-size: 0.95rem;
+  }
+
+  .drinks-visual {
+    margin-top: var(--space-6);
   }
 }
 
