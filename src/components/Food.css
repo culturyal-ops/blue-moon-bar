@@ -1,7 +1,6 @@
 .food {
   padding: var(--section-spacing) var(--gutter);
-  background: rgba(255, 253, 248, 0.6);
-  backdrop-filter: blur(20px);
+  background: var(--warm-white);
   position: relative;
 }
 
@@ -26,10 +25,10 @@
   font-family: var(--font-display);
   margin-bottom: var(--space-6);
   color: var(--navy);
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  line-height: 0.95;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  text-transform: none;
+  line-height: 0.92;
   overflow-wrap: break-word;
 }
 
@@ -54,10 +53,9 @@
   font-size: 0.8125rem;
   font-family: var(--font-ui);
   color: var(--navy);
-  background: white;
-  border-radius: var(--radius-full);
-  border: 1.5px solid var(--line);
-  transition: all var(--duration-sm) var(--ease-out);
+  background: transparent;
+  border-radius: 4px;
+  border: 1px solid rgba(7, 24, 44, 0.2);
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -65,18 +63,23 @@
   min-height: 44px;
   cursor: pointer;
   flex-shrink: 0;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
 }
 
 .category-pill:hover {
-  background: var(--ice);
   border-color: var(--blue);
   color: var(--deep-blue);
 }
 
 .category-pill.active {
-  background: var(--deep-blue);
+  background: var(--navy);
   color: var(--warm-white);
-  border-color: var(--deep-blue);
+  border-color: var(--navy);
+}
+
+.category-pill:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
 }
 
 .food-items-list {
@@ -88,14 +91,19 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-height: 64px;
+  gap: 16px;
   padding: var(--space-4) 0;
   border-bottom: 1px solid var(--line);
-  transition: all var(--duration-sm) var(--ease-out);
+  transition: border-color 180ms ease;
 }
 
 .food-list-item:hover {
-  padding-left: var(--space-3);
   border-bottom-color: var(--blue);
+}
+
+.food-list-item:hover .item-info {
+  transform: translateX(4px);
 }
 
 .food-list-item:hover .item-accent {
@@ -103,7 +111,10 @@
   background: var(--blue);
 }
 
-.item-info { flex: 1; }
+.item-info {
+  flex: 1;
+  transition: transform 180ms ease;
+}
 
 .item-name {
   font-size: var(--text-lg);
@@ -179,6 +190,23 @@
     padding: var(--space-9) var(--gutter);
   }
 
+  .food-layout {
+    /* Use flexbox for reliable ordering on mobile */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .food-content {
+    order: 1;
+  }
+
+  .food-visual {
+    order: 2;
+    position: relative;
+    top: 0;
+  }
+
   .food-title {
     font-size: clamp(2rem, 8vw, 2.5rem);
     margin-bottom: var(--space-5);
@@ -199,7 +227,7 @@
     margin-right: calc(-1 * var(--gutter));
     padding-left: var(--gutter);
     padding-right: var(--gutter);
-    /* Hide scrollbar but keep functionality */
+    margin-bottom: var(--space-6);
     scrollbar-width: none;
     -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
@@ -215,12 +243,12 @@
     font-size: 0.75rem;
     min-height: 40px;
     flex-shrink: 0;
-    /* Ensure smooth touch interaction */
     touch-action: pan-x;
   }
 
   .food-items-list {
     margin-top: var(--space-4);
+    margin-bottom: var(--space-6);
   }
 
   .food-list-item {
@@ -234,10 +262,6 @@
 
   .item-timing {
     font-size: 0.75rem;
-  }
-
-  .food-visual {
-    margin-top: var(--space-6);
   }
 }
 

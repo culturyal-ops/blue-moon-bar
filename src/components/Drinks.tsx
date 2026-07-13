@@ -30,11 +30,11 @@ export default function Drinks() {
 
           <div className="drinks-categories">
             {drinksMenu.map((category, catIndex) => (
-              <ScrollReveal key={category.category} index={Math.min(catIndex + 2, 8)}>
+              <ScrollReveal key={category?.category} index={Math.min(catIndex + 2, 8)}>
                 <div className="drinks-category">
-                  <h3 className="drinks-category-name">{category.category}</h3>
+                  <h3 className="drinks-category-name">{category?.category}</h3>
                   <div className="drinks-items">
-                    {category.items.map((item, index) => (
+                    {category?.items?.map((item, index) => (
                       <div key={index} className="drinks-item">
                         <span className="drinks-bullet">●</span>
                         <span className="drinks-item-name">{item}</span>

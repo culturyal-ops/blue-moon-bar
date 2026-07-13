@@ -23,10 +23,10 @@
   font-family: var(--font-display);
   margin-bottom: var(--space-6);
   color: var(--navy);
-  font-weight: 400;
-  line-height: var(--leading-tight);
+  font-weight: 700;
   letter-spacing: -0.01em;
   text-transform: uppercase;
+  line-height: 1;
   overflow-wrap: break-word;
 }
 

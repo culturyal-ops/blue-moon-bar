@@ -15,8 +15,8 @@
   height: 100%;
   object-fit: cover;
   object-position: var(--object-position-desktop, center center);
-  /* Restrained cinematic grade — no blue cast */
-  filter: contrast(1.04) saturate(0.92) brightness(0.94);
+  /* Subtle filter - preserve video quality */
+  filter: contrast(1.02) saturate(0.95) brightness(0.92);
 }
 
 .background-video {
@@ -28,24 +28,25 @@
   opacity: 1;
 }
 
-/* Neutral directional overlay — darkest behind copy, transparent over the building */
+/* Radial gradient vignette - darker edges, lighter center for text legibility */
 .background-video-overlay {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(
-      90deg,
-      rgba(3, 8, 14, 0.82) 0%,
-      rgba(3, 8, 14, 0.64) 28%,
-      rgba(3, 8, 14, 0.28) 52%,
-      rgba(3, 8, 14, 0.08) 76%,
-      rgba(3, 8, 14, 0.04) 100%
+    /* Radial gradient from center - keeps video visible in middle */
+    radial-gradient(
+      ellipse at center,
+      rgba(3, 8, 14, 0.2) 0%,
+      rgba(3, 8, 14, 0.45) 50%,
+      rgba(3, 8, 14, 0.75) 100%
     ),
+    /* Bottom gradient for button legibility */
     linear-gradient(
       180deg,
-      rgba(3, 8, 14, 0.30) 0%,
-      transparent 38%,
-      rgba(3, 8, 14, 0.32) 100%
+      transparent 0%,
+      transparent 60%,
+      rgba(3, 8, 14, 0.5) 85%,
+      rgba(3, 8, 14, 0.7) 100%
     );
   z-index: 1;
   pointer-events: none;
@@ -57,15 +58,21 @@
     object-position: var(--object-position-mobile, center center);
   }
 
-  /* Vertical overlay for mobile — text occupies most of the height */
+  /* Stronger vignette on mobile for better text contrast */
   .background-video-overlay {
     background:
+      radial-gradient(
+        ellipse at center,
+        rgba(3, 8, 14, 0.3) 0%,
+        rgba(3, 8, 14, 0.55) 40%,
+        rgba(3, 8, 14, 0.8) 100%
+      ),
       linear-gradient(
         180deg,
-        rgba(3, 8, 14, 0.38) 0%,
-        rgba(3, 8, 14, 0.12) 24%,
-        rgba(3, 8, 14, 0.46) 58%,
-        rgba(3, 8, 14, 0.88) 100%
+        rgba(3, 8, 14, 0.1) 0%,
+        transparent 30%,
+        rgba(3, 8, 14, 0.6) 80%,
+        rgba(3, 8, 14, 0.85) 100%
       );
   }
 }

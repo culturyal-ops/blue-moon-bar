@@ -3,7 +3,7 @@ import ScrollReveal from './ScrollReveal';
 import './Evening.css';
 
 export default function Evening() {
-  const eveningItems = foodMenu.filter((item) => item.availableAfter);
+  const eveningItems = foodMenu.filter((item) => item?.availableAfter);
 
   return (
     <section id="evening" className="evening">
@@ -14,14 +14,14 @@ export default function Evening() {
             <h2 className="evening-title">After five</h2>
           </ScrollReveal>
           <ScrollReveal index={1}>
-            <p className="evening-description">{aboutText.evening}</p>
+            <p className="evening-description">{aboutText?.evening}</p>
           </ScrollReveal>
 
           <div className="evening-items">
             {eveningItems.map((item, index) => (
               <ScrollReveal key={index} index={Math.min(index + 2, 12)}>
                 <div className="evening-item">
-                  {item.name}
+                  {item?.name}
                 </div>
               </ScrollReveal>
             ))}

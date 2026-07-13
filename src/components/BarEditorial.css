@@ -28,18 +28,20 @@
 }
 
 .bar-editorial__title {
-  font-family: var(--font-editorial);
+  font-family: var(--font-display);
   font-size: clamp(2rem, 5.5vw, 4.5rem);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.12;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.01em;
   margin: 0 0 var(--space-6);
   color: var(--warm-white);
   overflow-wrap: break-word;
 }
 
 .bar-editorial__title em {
+  font-family: var(--font-accent);
   font-style: italic;
+  font-weight: 400;
   color: var(--sky);
 }
 

@@ -21,8 +21,9 @@
   margin-bottom: var(--space-8);
   color: var(--navy);
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.01em;
   text-transform: uppercase;
+  line-height: 1;
   overflow-wrap: break-word;
 }
 

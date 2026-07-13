@@ -21,9 +21,9 @@ export default function Food() {
 
   const filteredItems = () => {
     if (activeCategory === 'Featured') {
-      return foodMenu.filter((item) => item.featured);
+      return foodMenu.filter((item) => item?.featured);
     }
-    return foodMenu.filter((item) => item.category === activeCategory);
+    return foodMenu.filter((item) => item?.category === activeCategory);
   };
 
   return (
@@ -59,11 +59,11 @@ export default function Food() {
 
             <div className="food-items-list">
               {filteredItems().map((item, index) => (
-                <ScrollReveal key={`${item.name}-${index}`} index={Math.min(index + 3, 15)}>
+                <ScrollReveal key={`${item?.name}-${index}`} index={Math.min(index + 3, 15)}>
                   <div className="food-list-item">
                     <div className="item-info">
-                      <h3 className="item-name">{item.name}</h3>
-                      {item.availableAfter && (
+                      <h3 className="item-name">{item?.name}</h3>
+                      {item?.availableAfter && (
                         <p className="item-timing">After {item.availableAfter}</p>
                       )}
                     </div>

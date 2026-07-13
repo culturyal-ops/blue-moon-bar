@@ -7,6 +7,7 @@ interface BackgroundVideoProps {
   objectPositionDesktop?: string;
   objectPositionMobile?: string;
   overlay?: boolean;
+  playbackRate?: number;
 }
 
 export default function BackgroundVideo({
@@ -15,6 +16,7 @@ export default function BackgroundVideo({
   objectPositionDesktop = 'center center',
   objectPositionMobile = 'center center',
   overlay = true,
+  playbackRate = 0.75,
 }: BackgroundVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
@@ -37,6 +39,9 @@ export default function BackgroundVideo({
     const video = videoRef.current;
     if (!video || prefersReducedMotion) return;
 
+    // Set playback rate for smoother timelapse
+    video.playbackRate = playbackRate;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -54,7 +59,7 @@ export default function BackgroundVideo({
 
     observer.observe(video);
     return () => observer.disconnect();
-  }, [prefersReducedMotion]);
+  }, [prefersReducedMotion, playbackRate]);
 
   const handleLoadedData = () => {
     setIsVideoLoaded(true);

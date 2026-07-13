@@ -45,41 +45,38 @@
   --color-border: var(--line);
 
   /* ═══════════════════════════════════════════════════════════
-     TYPOGRAPHY — BLUE MOON CUSTOM PAIRING
+     TYPOGRAPHY — NURA/SOLEN STYLE (Rounded Modern Geometric)
      ═══════════════════════════════════════════════════════════
      
-     Based on "Free Quality Fonts" & "Canva Font Pairings"
+     Inspired by NURA and SOLEN - rounded, modern geometric sans
      
-     → SECTION TITLES: League Spartan (MESHED Display alternative)
-       Bold, geometric, ultra-clean for all section headers
+     → ALL SECTION TITLES: Outfit (rounded geometric, NURA style)
+       Bold, rounded, ultra-modern for all headers
        
-     → HERO/WELCOME: Cinzel (HUMANE alternative)  
-       Elegant, condensed serif for "Blue Moon" and welcome text
+     → HERO/LOGO: Outfit (same, for consistency)
+       Clean, bold, geometric
+       
+     → ACCENT/ITALIC: Tangerine
+       For "how the night should feel" style italic text
        
      → BODY TEXT: Cormorant Garamond
-       Readable elegant serif for descriptions
-       
-     → ACCENT/SCRIPT: Libre Baskerville (italic)
-       For special callouts and decorative elements
-       
-     → UI ELEMENTS: Quicksand
-       Soft, rounded sans for buttons and navigation
+       Elegant serif for descriptions
      ═══════════════════════════════════════════════════════════ */
 
-  /* Section Titles - Bold geometric (like MESHED Display) */
-  --font-display: "League Spartan", "Impact", sans-serif;
+  /* All Titles - Rounded geometric (like NURA/SOLEN) */
+  --font-display: "Outfit", system-ui, sans-serif;
   
-  /* Hero/Logo - Elegant condensed serif (like HUMANE) */
-  --font-hero: "Cinzel", "Didot", serif;
+  /* Hero/Logo - Same rounded geometric */
+  --font-hero: "Outfit", system-ui, sans-serif;
   
-  /* Accent/Decorative - Elegant serif italic */
-  --font-accent: "Libre Baskerville", Georgia, serif;
+  /* Accent/Italic - Elegant script for special text */
+  --font-accent: "Tangerine", cursive;
   
-  /* Body - Readable serif for descriptions */
+  /* Body - Elegant serif for descriptions */
   --font-body: "Cormorant Garamond", Georgia, serif;
   
-  /* UI - Soft rounded sans for buttons, nav */
-  --font-ui: "Quicksand", system-ui, sans-serif;
+  /* UI - Same as display for consistency */
+  --font-ui: "Outfit", system-ui, sans-serif;
 
   /* Typography — Editorial Scale */
   --text-xs: 0.75rem;      /* 12px - metadata */

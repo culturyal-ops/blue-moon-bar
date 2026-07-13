@@ -1,5 +1,5 @@
 /* ────────────────────────────────────────────────────────────
-   Hero — Optimized for video timelapse background
+   Hero — Three-zone grid layout with rotating circular text
    ──────────────────────────────────────────────────────────── */
 
 .hero {
@@ -9,154 +9,236 @@
   isolation: isolate;
 }
 
+/* Image overlay - independent of content */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(4, 12, 22, 0.16) 0%,
+    rgba(4, 12, 22, 0.24) 48%,
+    rgba(4, 12, 22, 0.74) 100%
+  );
+}
+
 .hero-container {
   position: relative;
   z-index: 2;
   min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-items: center;
+  padding: calc(64px + 24px) var(--gutter) max(24px, env(safe-area-inset-bottom));
+}
+
+/* ── Rotating Circular Text Ring ── */
+.hero-circular-brand {
+  position: relative;
+  top: auto;
+  left: auto;
+  transform: none;
+  justify-self: center;
+  align-self: center;
+  pointer-events: none;
+}
+
+.hero-circular-text {
+  width: clamp(180px, 52vw, 220px);
+  height: clamp(180px, 52vw, 220px);
+  animation: rotateCircle 30s linear infinite;
+}
+
+@keyframes rotateCircle {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.hero-circular-text-letters {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  fill: #f7f4ed;
+  text-transform: uppercase;
+}
+
+/* ── Mobile CTA Cards ── */
+.hero-ctas-mobile {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  display: grid;
+  gap: 12px;
+  align-self: end;
+}
+
+.hero-cta-card {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: calc(64px + 2rem) var(--gutter) clamp(2rem, 6vw, 4rem);
+  min-height: 72px;
+  padding: 0 18px;
+  background: rgba(5, 16, 29, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #f7f4ed;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
 
-/* ── Center brand/logo ── */
-.hero-brand {
-  flex: 1;
+.hero-cta-card:hover {
+  background: rgba(5, 16, 29, 0.9);
+  border-color: rgba(255, 255, 255, 0.34);
+  transform: translateY(-1px);
+}
+
+.hero-cta-card:active {
+  transform: scale(0.98);
+}
+
+.cta-card-text {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: var(--space-3);
+  align-items: flex-start;
+  gap: 4px;
 }
 
-.hero-logo {
-  font-family: var(--font-hero);
-  font-size: clamp(3.5rem, 12vw, 8rem);
+.cta-card-title {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
   font-weight: 600;
-  line-height: 0.85;
-  letter-spacing: 0.02em;
-  color: var(--warm-white);
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-  margin: 0;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #f7f4ed;
 }
 
-.hero-tagline {
-  font-family: var(--font-ui);
-  font-size: clamp(0.875rem, 2vw, 1.125rem);
+.cta-card-desc {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
   font-weight: 400;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255, 253, 248, 0.9);
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
-  margin: 0;
+  color: #f7f4ed;
+  opacity: 0.65;
 }
 
-/* ── Glassmorphism CTAs at bottom ── */
-.hero-ctas {
-  display: flex;
-  gap: var(--space-4);
-  width: 100%;
-  max-width: 480px;
-  z-index: 3;
+.cta-card-icon {
+  flex-shrink: 0;
+  color: #f7f4ed;
+  opacity: 0.7;
+  transition: opacity 180ms ease;
 }
 
-.hero-cta {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 1.5rem;
-  font-family: var(--font-ui);
-  font-size: clamp(0.875rem, 1.8vw, 1rem);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  min-height: 56px;
-  border: 1px solid rgba(255, 253, 248, 0.2);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+.hero-cta-card:hover .cta-card-icon {
+  opacity: 1;
 }
 
-.hero-cta-primary {
-  background: rgba(255, 253, 248, 0.95);
-  color: var(--navy);
-  border-color: rgba(255, 253, 248, 0.95);
+/* ── Desktop CTAs (hidden on mobile) ── */
+.hero-ctas-desktop {
+  display: none;
 }
 
-.hero-cta-primary:hover {
-  background: var(--warm-white);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-}
-
-.hero-cta-secondary {
-  background: rgba(7, 24, 44, 0.25);
-  color: var(--warm-white);
-  border-color: rgba(255, 253, 248, 0.3);
-}
-
-.hero-cta-secondary:hover {
-  background: rgba(7, 24, 44, 0.45);
-  border-color: rgba(255, 253, 248, 0.5);
-  transform: translateY(-2px);
-}
-
-.hero-cta:active {
-  transform: translateY(0);
-}
-
-/* ── Mobile ── */
-@media (max-width: 768px) {
-  .hero-logo {
-    font-size: clamp(2.5rem, 14vw, 4rem);
+/* ── Desktop Layout ── */
+@media (min-width: 769px) {
+  .hero-container {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    justify-items: center;
+    align-items: center;
+    padding: calc(72px + 32px) var(--gutter) 40px;
   }
 
-  .hero-tagline {
-    font-size: 0.8125rem;
-    letter-spacing: 0.12em;
+  .hero-circular-brand {
+    align-self: center;
   }
 
-  .hero-ctas {
-    flex-direction: column;
-    max-width: 100%;
-    gap: var(--space-3);
+  .hero-circular-text {
+    width: clamp(280px, 24vw, 340px);
+    height: clamp(280px, 24vw, 340px);
+  }
+
+  .hero-circular-text-letters {
+    font-size: 16px;
+  }
+
+  /* Hide mobile CTAs, show desktop */
+  .hero-ctas-mobile {
+    display: none;
+  }
+
+  .hero-ctas-desktop {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: min(680px, 100%);
+    gap: 14px;
+    align-self: end;
   }
 
   .hero-cta {
-    padding: 0.875rem 1.25rem;
-    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1.5rem;
+    font-family: var(--font-ui);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    min-height: 72px;
+    background: rgba(5, 16, 29, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: #f7f4ed;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+  }
+
+  .hero-cta:hover {
+    background: rgba(5, 16, 29, 0.9);
+    border-color: rgba(255, 255, 255, 0.34);
+    transform: translateY(-1px);
+  }
+
+  .hero-cta:active {
+    transform: translateY(0);
   }
 }
 
 /* ── Landscape mobile ── */
 @media (max-height: 500px) and (orientation: landscape) {
   .hero-container {
+    grid-template-columns: 0.8fr 1.2fr;
+    grid-template-rows: 1fr;
+    gap: 24px;
     padding-top: 72px;
-    justify-content: center;
-    gap: var(--space-6);
   }
 
-  .hero-brand {
-    flex: 0;
+  .hero-circular-brand {
+    grid-column: 1;
   }
 
-  .hero-logo {
-    font-size: clamp(2rem, 10vh, 3rem);
+  .hero-ctas-mobile {
+    grid-column: 2;
   }
 
-  .hero-ctas {
-    flex-direction: row;
+  .hero-circular-text {
+    width: 150px;
+    height: 150px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero * {
+  .hero-circular-text {
     animation: none !important;
+  }
+  
+  .hero-cta-card,
+  .hero-cta {
     transition: none !important;
   }
 }
