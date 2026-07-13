@@ -1,0 +1,103 @@
+/* ──────────────────────────────────────────────────────────────
+   Blue Moon Reset — adapted from Lush design language extraction
+   ────────────────────────────────────────────────────────────── */
+
+*, *::before, *::after { 
+  box-sizing: border-box; 
+}
+
+html, body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, blockquote, figure,
+form, fieldset, table, hr {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: var(--leading-normal);
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--warm-white);
+  color: var(--color-text-dark);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Prevent horizontal overflow at root level without hiding layout bugs */
+html {
+  overflow-x: clip;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+  color: var(--cold-white);
+}
+
+a {
+  color: var(--moonlight-blue);
+  text-decoration: none;
+  background-color: transparent;
+  transition: color var(--duration-sm) var(--ease-out);
+}
+
+a:hover { 
+  color: var(--electric-blue);
+}
+
+a:focus-visible { 
+  outline: 2px solid var(--electric-blue); 
+  outline-offset: 4px; 
+  border-radius: var(--radius-sm);
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input, textarea, select, button {
+  font: inherit;
+  color: inherit;
+}
+
+button { 
+  cursor: pointer; 
+  background: none; 
+  border: 0; 
+  padding: 0; 
+}
+
+ul, ol {
+  list-style: none;
+}
+
+::selection {
+  background: var(--royal-blue);
+  color: var(--cold-white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}

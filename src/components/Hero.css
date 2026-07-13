@@ -1,0 +1,124 @@
+/* ────────────────────────────────────────────────────────────
+   Hero — Responsive slideshow background + CTA
+   ──────────────────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 2;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* Top padding clears the fixed nav (64px) */
+  padding: calc(64px + 2rem) var(--gutter) clamp(2rem, 6vw, 4rem);
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+/* ── Rotating circular text — scales via clamp ── */
+.hero-rotating .circular-text {
+  width: clamp(180px, 28vw, 320px);
+  height: clamp(180px, 28vw, 320px);
+}
+
+.hero-rotating .circular-text-letter {
+  font-size: clamp(0.7rem, 1.1vw, 1rem);
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: var(--warm-white);
+}
+
+/* ── Two equal CTA boxes ── */
+.hero-ctas {
+  display: flex;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: 580px;
+}
+
+.hero-cta {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-5);
+  background: rgba(7, 24, 44, 0.85);
+  border: 1px solid rgba(255, 253, 248, 0.2);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  min-height: 64px;
+}
+
+.hero-cta:hover  { opacity: 0.9; transform: translateY(-1px); }
+.hero-cta:active { opacity: 0.8; transform: translateY(0); }
+
+.cta-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.cta-title {
+  font-family: var(--font-label);
+  font-size: clamp(0.8125rem, 1.5vw, 0.9375rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--warm-white);
+}
+
+.cta-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.6875rem, 1.2vw, 0.8125rem);
+  color: rgba(255, 253, 248, 0.6);
+}
+
+.hero-cta svg {
+  flex-shrink: 0;
+  color: rgba(255, 253, 248, 0.6);
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .hero-ctas {
+    flex-direction: column;
+    max-width: 100%;
+    gap: var(--space-3);
+  }
+
+  .hero-cta {
+    padding: var(--space-4) var(--space-5);
+  }
+}
+
+/* ── Landscape mobile — reduce gap ── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-container {
+    gap: 1rem;
+    padding-top: 72px;
+  }
+
+  .hero-rotating .circular-text {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .hero-rotating { display: none; }
+}

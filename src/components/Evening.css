@@ -1,0 +1,121 @@
+.evening {
+  padding: var(--section-spacing) var(--gutter);
+  background:
+    radial-gradient(circle at 72% 30%, rgba(36,104,172,0.42), transparent 38%),
+    linear-gradient(135deg, var(--navy) 0%, var(--deep-blue) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.evening-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 30% 50%,
+    rgba(110, 181, 233, 0.12) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.evening-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+  align-items: center;
+  position: relative;
+  z-index: var(--z-elevated);
+}
+
+.evening-content {
+  padding: var(--space-6) 0;
+}
+
+.evening-title {
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  font-family: var(--font-display);
+  margin-bottom: var(--space-6);
+  color: var(--warm-white);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+}
+
+.evening-description {
+  font-size: var(--text-lg);
+  color: rgba(255, 253, 248, 0.75);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-9);
+  max-width: 540px;
+}
+
+.evening-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.evening-item {
+  padding: 0.75rem 1.25rem;
+  background: rgba(110, 181, 233, 0.1);
+  border: 1.5px solid rgba(110, 181, 233, 0.3);
+  border-radius: 0.5rem;
+  color: var(--warm-white);
+  font-size: var(--text-base);
+  font-family: var(--font-body);
+  transition: all var(--duration-md) var(--ease-out);
+  font-weight: 500;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.evening-item:hover {
+  background: rgba(110, 181, 233, 0.2);
+  border-color: var(--moon-blue);
+}
+
+.evening-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.evening-image {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(3, 8, 14, 0.4);
+  display: block;
+}
+
+/* ── Tablet ── */
+@media (max-width: 968px) {
+  .evening-container {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .evening-content {
+    text-align: center;
+    padding: 0;
+  }
+
+  .evening-description { max-width: 100%; }
+
+  .evening-items { justify-content: center; }
+
+  .evening-image { aspect-ratio: 16 / 9; }
+}
+
+/* ── Mobile ── */
+@media (max-width: 640px) {
+  .evening-item {
+    font-size: var(--text-sm);
+    padding: 0.625rem 1rem;
+  }
+}

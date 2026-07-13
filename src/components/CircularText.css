@@ -1,0 +1,16 @@
+.circular-text {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.circular-text-letter {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 50%;
+  transform-origin: 0 100%;
+  font-size: 1rem;
+  font-weight: 700;
+}

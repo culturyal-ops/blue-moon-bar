@@ -1,0 +1,131 @@
+/* ──────────────────────────────────────────────────────────────
+   Blue Moon Motion — adapted from Lush motion system
+   Slower, weighted, cinematic pacing for nocturnal atmosphere
+   ────────────────────────────────────────────────────────────── */
+
+/* Keyframes */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { 
+    opacity: 0; 
+    transform: translateY(24px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: none; 
+  }
+}
+
+@keyframes slide-down {
+  from { 
+    opacity: 0; 
+    transform: translateY(-16px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: none; 
+  }
+}
+
+@keyframes scale-in {
+  from { 
+    opacity: 0; 
+    transform: scale(0.94); 
+  }
+  to { 
+    opacity: 1; 
+    transform: none; 
+  }
+}
+
+@keyframes blur-in {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* Animation utility classes */
+.animate {
+  animation-duration: var(--duration-lg);
+  animation-timing-function: var(--ease-out);
+  animation-fill-mode: both;
+}
+
+.animate-fast {
+  animation-duration: var(--duration-md);
+}
+
+.animate-slow {
+  animation-duration: var(--duration-xl);
+}
+
+.fade-in {
+  animation-name: fade-in;
+}
+
+.slide-up {
+  animation-name: slide-up;
+}
+
+.slide-down {
+  animation-name: slide-down;
+}
+
+.scale-in {
+  animation-name: scale-in;
+}
+
+.blur-in {
+  animation-name: blur-in;
+}
+
+/* Stagger delays for sequential reveals */
+.stagger-1 { animation-delay: 100ms; }
+.stagger-2 { animation-delay: 200ms; }
+.stagger-3 { animation-delay: 300ms; }
+.stagger-4 { animation-delay: 400ms; }
+.stagger-5 { animation-delay: 500ms; }
+
+/* Hover and interaction states */
+.transition-smooth {
+  transition: all var(--duration-md) var(--ease-out);
+}
+
+.transition-colors {
+  transition: color var(--duration-sm) var(--ease-out),
+              background-color var(--duration-sm) var(--ease-out),
+              border-color var(--duration-sm) var(--ease-out);
+}
+
+.transition-transform {
+  transition: transform var(--duration-md) var(--ease-out);
+}
+
+/* Reduced motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .animate,
+  .fade-in,
+  .slide-up,
+  .slide-down,
+  .scale-in,
+  .blur-in {
+    animation: none !important;
+  }
+}

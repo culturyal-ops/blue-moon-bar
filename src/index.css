@@ -1,0 +1,20 @@
+/* Blue Moon — Main Stylesheet */
+
+/* Import design system files */
+@import './tokens.css';
+@import './reset.css';
+@import './motion.css';
+
+/* Load fonts */
+@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600&family=Anton&display=swap');
+
+/* Global body styling */
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-text-dark);
+  background: var(--warm-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

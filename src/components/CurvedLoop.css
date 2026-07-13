@@ -1,0 +1,36 @@
+.curved-loop-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  /* Ensure no gap above/below */
+  display: block;
+  line-height: 0;
+}
+
+.curved-loop-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  /* preserveAspectRatio="none" means it scales proportionally to width */
+}
+
+.curved-loop-text {
+  fill: var(--warm-white);
+  font-family: var(--font-display);
+  /* SVG font-size is in the SVG coordinate space (viewBox 1440x300)
+     56px in a 1440-wide viewBox = ~3.9% of width, looks right on desktop.
+     On mobile the whole SVG scales down so text scales naturally. */
+  font-size: 56px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curved-loop-container {
+    display: none;
+  }
+}

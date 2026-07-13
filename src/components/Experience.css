@@ -1,0 +1,128 @@
+.experience {
+  padding: var(--section-spacing) var(--gutter);
+  background: var(--warm-white);
+  position: relative;
+}
+
+.experience-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+  align-items: start;
+}
+
+.experience-content {
+  max-width: 520px;
+  padding-top: var(--space-8);
+}
+
+.experience-title {
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  font-family: var(--font-display);
+  margin-bottom: var(--space-6);
+  color: var(--navy);
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+}
+
+.experience-description {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-muted);
+}
+
+/* Image Grid Layout */
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  grid-auto-rows: 220px;
+}
+
+.grid-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.grid-item-large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* Circular badge overlay */
+.experience-circular-badge {
+  position: absolute;
+  bottom: clamp(12px, 3vw, 40px);
+  right: clamp(12px, 3vw, 40px);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.experience-circular-badge .circular-text {
+  width: clamp(100px, 12vw, 200px);
+  height: clamp(100px, 12vw, 200px);
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+}
+
+.experience-circular-badge .circular-text-letter {
+  font-size: clamp(0.6rem, 0.9vw, 1.05rem);
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: var(--navy);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.grid-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--duration-lg) var(--ease-out);
+}
+
+.grid-item:hover .grid-image { transform: scale(1.05); }
+
+/* ── Tablet ── */
+@media (max-width: 968px) {
+  .experience-container {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .experience-content {
+    max-width: 100%;
+    padding-top: 0;
+  }
+
+  .experience-grid {
+    grid-auto-rows: 180px;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 640px) {
+  .experience-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 160px;
+    gap: var(--space-3);
+  }
+
+  .grid-item-large {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 390px) {
+  .experience-grid {
+    grid-auto-rows: 140px;
+  }
+}

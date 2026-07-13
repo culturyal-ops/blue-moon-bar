@@ -1,0 +1,184 @@
+.infinite-carousel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.carousel-container:active {
+  cursor: grabbing;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  height: 100%;
+  padding: 0 50vw;
+  will-change: transform;
+}
+
+.carousel-item {
+  flex-shrink: 0;
+  height: 70%;
+  max-height: 600px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 300ms ease, box-shadow 300ms ease;
+  position: relative;
+}
+
+.carousel-item:hover {
+  transform: scale(1.05);
+  z-index: 10;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.carousel-item img {
+  height: 100%;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.carousel-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 300ms ease;
+}
+
+.carousel-viewer.closing {
+  animation: fadeOut 300ms ease;
+}
+
+.carousel-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.carousel-enlarged {
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: scaleIn 300ms ease;
+}
+
+.carousel-viewer.closing .carousel-enlarged {
+  animation: scaleOut 300ms ease;
+}
+
+.carousel-enlarged img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.carousel-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 200ms;
+  z-index: 20;
+}
+
+.carousel-close:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+body.carousel-scroll-lock,
+html.carousel-scroll-lock {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-track {
+    gap: 12px;
+  }
+
+  .carousel-item {
+    height: 60%;
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 640px) {
+  .carousel-track {
+    gap: 8px;
+  }
+
+  .carousel-item {
+    height: 50%;
+    max-height: 300px;
+  }
+}

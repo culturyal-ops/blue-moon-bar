@@ -1,0 +1,23 @@
+.statement {
+  padding: clamp(3rem, 8vw, 7.5rem) var(--gutter);
+  background: var(--warm-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.statement-text {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 8vw, 7rem);
+  line-height: 1.1;
+  color: var(--navy);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  max-width: 1000px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}

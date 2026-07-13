@@ -1,0 +1,111 @@
+/* ─────────────────────────────────────────────────────────────
+   Hero Slideshow — smooth crossfade, no grey flash
+   Two layers always present; top fades in over bottom.
+   ───────────────────────────────────────────────────────────── */
+
+.hero-slideshow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  /* Dark fallback so nothing ever goes grey */
+  background: #07182c;
+}
+
+/* ── Shared image styles ── */
+.hero-slide-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  filter: contrast(1.04) saturate(0.88) brightness(0.9);
+  will-change: opacity;
+}
+
+/* Bottom layer — outgoing, always fully visible */
+.hero-slide-img--bottom {
+  opacity: 1;
+  z-index: 1;
+  animation: ken-burns-a 6000ms ease-in-out forwards;
+}
+
+/* Top layer — incoming, starts transparent */
+.hero-slide-img--top {
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 1400ms ease-in-out;
+  animation: ken-burns-b 6000ms ease-in-out forwards;
+}
+
+/* Triggered by JS — fades the top layer in */
+.hero-slide-img--visible {
+  opacity: 1;
+}
+
+/* ── Ken Burns — two variants so they feel different each shot ── */
+@keyframes ken-burns-a {
+  from { transform: scale(1.0)  translate(0px,   0px); }
+  to   { transform: scale(1.07) translate(-10px,  5px); }
+}
+
+@keyframes ken-burns-b {
+  from { transform: scale(1.05) translate(6px,  -4px); }
+  to   { transform: scale(1.0)  translate(0px,   0px); }
+}
+
+/* ── Overlay ── */
+.hero-slideshow-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 8, 14, 0.82) 0%,
+      rgba(3, 8, 14, 0.64) 28%,
+      rgba(3, 8, 14, 0.28) 52%,
+      rgba(3, 8, 14, 0.08) 76%,
+      rgba(3, 8, 14, 0.04) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(3, 8, 14, 0.30) 0%,
+      transparent 38%,
+      rgba(3, 8, 14, 0.32) 100%
+    );
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .hero-slide-img {
+    object-position: 54% center;
+  }
+
+  .hero-slideshow-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(3, 8, 14, 0.38) 0%,
+        rgba(3, 8, 14, 0.12) 24%,
+        rgba(3, 8, 14, 0.46) 58%,
+        rgba(3, 8, 14, 0.88) 100%
+      );
+  }
+}
+
+/* ── Reduced motion — no animation, hold first image ── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide-img--bottom,
+  .hero-slide-img--top {
+    animation: none !important;
+  }
+  .hero-slide-img--top {
+    transition: none !important;
+    opacity: 0 !important;
+  }
+}
