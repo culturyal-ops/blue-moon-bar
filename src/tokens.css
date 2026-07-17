@@ -69,6 +69,12 @@
   /* Hero/Logo - Same rounded geometric */
   --font-hero: "Outfit", system-ui, sans-serif;
   
+  /* Welcome text font - Using Alice for bold elegant caps */
+  --font-welcome: "Alice", Georgia, serif;
+  
+  /* Sacramento script - for decorative text */
+  --font-script: "Sacramento", cursive;
+  
   /* Accent/Italic - Elegant script for special text */
   --font-accent: "Tangerine", cursive;
   
@@ -78,22 +84,31 @@
   /* UI - Same as display for consistency */
   --font-ui: "Outfit", system-ui, sans-serif;
 
-  /* Typography — Editorial Scale */
-  --text-xs: 0.75rem;      /* 12px - metadata */
-  --text-sm: 0.875rem;     /* 14px - labels */
-  --text-base: 1.125rem;   /* 18px - body */
-  --text-lg: 1.25rem;      /* 20px - large body */
-  --text-xl: 1.75rem;      /* 28px - subheadings */
-  --text-2xl: 2.25rem;     /* 36px - h3 */
-  --text-3xl: 3rem;        /* 48px - h2 */
-  --text-4xl: 4rem;        /* 64px - h1 */
-  --text-5xl: 5rem;        /* 80px - hero display */
+  /* Typography — Editorial Scale with fluid typography */
+  --text-xs: clamp(0.75rem, 0.9vw, 0.875rem);     /* 12-14px - metadata, captions */
+  --text-sm: clamp(0.875rem, 1.1vw, 1rem);        /* 14-16px - labels, small text */
+  --text-base: clamp(1.125rem, 1.4vw, 1.25rem);   /* 18-20px - body text */
+  --text-lg: clamp(1.25rem, 1.6vw, 1.5rem);       /* 20-24px - lead text */
+  --text-xl: clamp(1.5rem, 2vw, 1.875rem);        /* 24-30px - subheadings */
+  --text-2xl: clamp(1.875rem, 2.5vw, 2.25rem);    /* 30-36px - section headings */
+  --text-3xl: clamp(2.25rem, 3vw, 3rem);          /* 36-48px - major headings */
+  --text-4xl: clamp(3rem, 4vw, 4rem);             /* 48-64px - hero headings */
+  --text-5xl: clamp(3.5rem, 5vw, 5rem);           /* 56-80px - display text */
+  --text-6xl: clamp(4rem, 6vw, 6rem);             /* 64-96px - oversized display */
 
-  /* Line heights */
+  /* Line heights — Editorial rhythm */
   --leading-tight: 1.1;
   --leading-snug: 1.25;
   --leading-normal: 1.5;
-  --leading-relaxed: 1.75;
+  --leading-relaxed: 1.65;
+  --leading-loose: 1.75;
+  
+  /* Letter spacing */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.02em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
 
   /* Spacing */
   --space-1: 0.25rem;    /* 4px */
@@ -110,18 +125,25 @@
 
   /* Responsive gutters — used as page padding */
   --gutter: clamp(1rem, 4vw, 4.5rem);
+  --gutter-mobile: clamp(1rem, 5vw, 1.5rem);
+  --gutter-tablet: clamp(1.25rem, 4vw, 2.5rem);
 
-  /* Border Radius */
+  /* Border Radius — Editorial rounded corners */
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
   --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
   --radius-full: 50px;
+  --radius-pill: 9999px;
 
-  /* Box Shadows — Subtle light-surface shadows */
-  --shadow-sm: 0 1px 3px rgba(9, 21, 33, 0.08);
-  --shadow-md: 0 2px 8px rgba(9, 21, 33, 0.1);
-  --shadow-lg: 0 4px 16px rgba(9, 21, 33, 0.12);
-  --shadow-blue: 0 4px 20px rgba(36, 104, 172, 0.15);
+  /* Box Shadows — Editorial depth system */
+  --shadow-xs: 0 1px 2px rgba(9, 21, 33, 0.05);
+  --shadow-sm: 0 2px 4px rgba(9, 21, 33, 0.08);
+  --shadow-md: 0 4px 12px rgba(9, 21, 33, 0.12);
+  --shadow-lg: 0 8px 24px rgba(9, 21, 33, 0.16);
+  --shadow-xl: 0 12px 48px rgba(9, 21, 33, 0.2);
+  --shadow-blue: 0 8px 32px rgba(36, 104, 172, 0.2);
+  --shadow-editorial: 0 4px 20px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
 
   /* Motion — Duration */
   --duration-xs: 100ms;
@@ -136,10 +158,21 @@
   --ease-in-out: ease;
   --ease-linear: linear;
 
-  /* Layout */
+  /* Layout — Editorial spacing system */
   --container-max: 1400px;
   --container-padding: var(--gutter);
+  --container-padding-mobile: var(--gutter-mobile);
   --section-spacing: clamp(3.5rem, 8vw, 7.5rem);
+  --section-spacing-mobile: clamp(2.5rem, 6vw, 4rem);
+  --section-spacing-tablet: clamp(3rem, 7vw, 5rem);
+  
+  /* Editorial grid */
+  --grid-gap: clamp(1.5rem, 3vw, 2.5rem);
+  --grid-gap-mobile: clamp(1rem, 2vw, 1.5rem);
+  
+  /* Touch targets for mobile */
+  --touch-target-min: 44px;
+  --touch-target-comfortable: 48px;
 
   /* Z-index layers */
   --z-base: 0;
@@ -151,12 +184,39 @@
 
 @media (max-width: 768px) {
   :root {
+    /* Mobile-optimized typography scale */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
     --text-base: 1rem;
     --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --text-5xl: 2.75rem;
+    --text-6xl: 3.25rem;
+    
+    /* Adjust gutters and spacing for mobile */
+    --gutter: var(--gutter-mobile);
+    --section-spacing: var(--section-spacing-mobile);
+    --grid-gap: var(--grid-gap-mobile);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    /* Tablet-optimized typography */
+    --text-base: 1.125rem;
+    --text-lg: 1.25rem;
     --text-xl: 1.5rem;
     --text-2xl: 1.75rem;
     --text-3xl: 2.25rem;
     --text-4xl: 2.75rem;
-    --text-5xl: 3.25rem;
+    --text-5xl: 3.5rem;
+    --text-6xl: 4rem;
+    
+    /* Tablet spacing */
+    --gutter: var(--gutter-tablet);
+    --section-spacing: var(--section-spacing-tablet);
   }
 }

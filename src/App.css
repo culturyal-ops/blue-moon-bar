@@ -1,10 +1,125 @@
-/* Blue Moon — Global Application Styles */
+/* Blue Moon — Editorial Layout System */
 
 #root {
   width: 100%;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
 }
 
 main {
   width: 100%;
+  flex: 1;
+}
+
+/* Editorial container system */
+.editorial-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+.editorial-section {
+  padding-block: var(--section-spacing);
+}
+
+.editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gap);
+}
+
+.editorial-content {
+  grid-column: 1 / -1;
+}
+
+.editorial-visual {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 769px) {
+  .editorial-content {
+    grid-column: 1 / 8;
+  }
+  
+  .editorial-visual {
+    grid-column: 8 / -1;
+  }
+}
+
+/* Editorial typography enhancements */
+.editorial-heading {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+.editorial-body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-dark);
+}
+
+.editorial-lead {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  font-weight: 400;
+  color: var(--color-text-navy);
+}
+
+/* Editorial cards */
+.editorial-card {
+  background: var(--color-bg-light);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-editorial);
+  transition: all 0.3s var(--ease-out);
+}
+
+.editorial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(9, 21, 33, 0.2);
+}
+
+/* Touch-friendly elements */
+.touch-target {
+  min-height: var(--touch-target-min);
+  min-width: var(--touch-target-min);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Safe area support */
+.safe-area-inset-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-area-inset-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .editorial-card:hover {
+    transform: none !important;
+  }
 }

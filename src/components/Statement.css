@@ -10,14 +10,15 @@
 }
 
 .statement-text {
-  font-family: var(--font-display);
+  font-family: var(--font-welcome);
   font-size: clamp(2.25rem, 8vw, 7rem);
-  line-height: 0.95;
+  line-height: 0.85;
   color: var(--navy);
-  font-weight: 400;
-  letter-spacing: -0.045em;  /* Tight for luxury serif */
-  text-transform: none;  /* Allow natural capital shapes */
+  font-weight: 700;
+  letter-spacing: 0.02em;  /* Slightly spaced for caps elegance */
+  text-transform: uppercase;  /* Force all caps */
   max-width: 1000px;
   overflow-wrap: break-word;
   word-break: break-word;
+  font-style: normal;
 }

@@ -37,7 +37,7 @@ export default function Navigation() {
         isMobileMenuOpen &&
         menuRef.current &&
         !menuRef.current.contains(event.target as Node) &&
-        !(event.target as HTMLElement).closest('.nav-hamburger')
+        !(event.target as HTMLElement).closest('.menu-toggle')
       ) {
         setIsMobileMenuOpen(false);
       }
@@ -73,99 +73,83 @@ export default function Navigation() {
   };
 
   return (
-    <nav className={`navigation ${isScrolled ? 'scrolled' : ''} ${shouldReduceMotion ? 'no-transition' : ''}`}>
-      <div className="nav-container">
-        <button
-          className="nav-brand"
-          onClick={scrollToTop}
-          aria-label="Blue Moon home"
-        >
-          BLUE MOON
-        </button>
+    <>
+      <header className={`site-header ${isScrolled ? 'scrolled' : ''} ${shouldReduceMotion ? 'no-transition' : ''}`}>
+        <div className="header-inner">
+          <button
+            className="site-logo"
+            onClick={scrollToTop}
+            aria-label="Blue Moon home"
+          >
+            BLUE MOON
+          </button>
 
-        {/* Desktop nav links */}
-        <ul className="nav-links-desktop">
-          <li>
-            <button onClick={() => scrollToSection('experience')}>
-              Experience
-            </button>
-          </li>
-          <li>
-            <button onClick={() => scrollToSection('food')}>Food</button>
-          </li>
-          <li>
-            <button onClick={() => scrollToSection('drinks')}>Drinks</button>
-          </li>
-          <li>
-            <button onClick={() => scrollToSection('evening')}>Evening</button>
-          </li>
-          <li>
-            <button onClick={() => scrollToSection('visit')}>Visit</button>
-          </li>
-          <li>
-            <button
-              className="nav-cta"
-              onClick={() => scrollToSection('visit')}
-            >
-              Directions
-            </button>
-          </li>
-        </ul>
+          {/* Desktop nav links */}
+          <ul className="nav-links-desktop">
+            <li>
+              <button onClick={() => scrollToSection('experience')}>
+                Experience
+              </button>
+            </li>
+            <li>
+              <button onClick={() => scrollToSection('food')}>Food</button>
+            </li>
+            <li>
+              <button onClick={() => scrollToSection('drinks')}>Drinks</button>
+            </li>
+            <li>
+              <button onClick={() => scrollToSection('evening')}>Evening</button>
+            </li>
+            <li>
+              <button onClick={() => scrollToSection('visit')}>Visit</button>
+            </li>
+            <li>
+              <button
+                className="nav-cta"
+                onClick={() => scrollToSection('visit')}
+              >
+                Directions
+              </button>
+            </li>
+          </ul>
 
-        {/* Mobile hamburger */}
-        <button
-          className={`nav-hamburger ${isMobileMenuOpen ? 'open' : ''}`}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={isMobileMenuOpen}
-          aria-controls="mobile-menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+          {/* Mobile hamburger */}
+          <button
+            className={`menu-toggle ${isMobileMenuOpen ? 'open' : ''}`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </header>
 
-        {/* Mobile menu */}
-        <ul
-          ref={menuRef}
-          id="mobile-menu"
-          className={`nav-links-mobile ${isMobileMenuOpen ? 'open' : ''}`}
-        >
-          <li>
-            <button onClick={() => scrollToSection('experience')}>
-              Experience
-            </button>
-          </li>
-          <li>
-            <button onClick={() => scrollToSection('food')}>Food</button>
-          </li>
-          <li>
-            <button onClick={() => scrollToSection('drinks')}>Drinks</button>
-          </li>
-          <li>
-            <button onClick={() => scrollToSection('evening')}>Evening</button>
-          </li>
-          <li>
-            <button onClick={() => scrollToSection('visit')}>Visit</button>
-          </li>
-          <li>
-            <button
-              className="nav-cta-mobile"
-              onClick={() => scrollToSection('visit')}
-            >
-              Directions
-            </button>
-          </li>
-        </ul>
-      </div>
-
-      {/* Mobile backdrop */}
+      {/* Mobile menu overlay - rendered outside header */}
       {isMobileMenuOpen && (
-        <div 
-          className="nav-backdrop"
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
+        <div className="mobile-menu" onClick={() => setIsMobileMenuOpen(false)}>
+          <nav
+            ref={menuRef}
+            id="mobile-menu"
+            className="mobile-menu-nav"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button onClick={() => scrollToSection('experience')}>
+              Experience
+            </button>
+            <button onClick={() => scrollToSection('food')}>Food</button>
+            <button onClick={() => scrollToSection('drinks')}>Drinks</button>
+            <button onClick={() => scrollToSection('evening')}>Evening</button>
+            <button onClick={() => scrollToSection('visit')}>Visit</button>
+            <button onClick={() => scrollToSection('visit')}>
+              Directions
+            </button>
+          </nav>
+        </div>
       )}
-    </nav>
+    </>
   );
 }

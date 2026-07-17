@@ -18,6 +18,19 @@
   border-bottom: 1px solid rgba(110, 181, 233, 0.15);
 }
 
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  
+  .footer-sections {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+}
+
 .footer-brand {
   display: flex;
   flex-direction: column;
