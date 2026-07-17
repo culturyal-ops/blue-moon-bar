@@ -72,7 +72,7 @@
 
 .footer-descriptor {
   font-size: var(--text-sm);
-  color: rgba(174, 210, 240, 0.5);
+  color: rgba(174, 210, 240, 0.75);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-family: var(--font-ui);
@@ -99,8 +99,7 @@
   font-weight: 700;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  /* Deep blue — not bright sky blue */
-  color: rgba(90, 150, 210, 0.65);
+  color: rgba(110, 181, 233, 0.9);
   margin: 0;
 }
 
@@ -117,7 +116,7 @@
   justify-content: space-between;
   min-height: 54px;
   padding: 12px 0;
-  color: rgba(238, 244, 251, 0.75);
+  color: rgba(238, 244, 251, 0.92);
   border-bottom: 1px solid rgba(18, 61, 106, 0.45);
   background: transparent;
   border-radius: 0;
@@ -173,7 +172,7 @@
 
 .footer-nav-arrow {
   font-size: 1rem;
-  color: rgba(36, 104, 172, 0.55);
+  color: rgba(110, 181, 233, 0.75);
   transition: transform 160ms ease, color 160ms ease;
   flex-shrink: 0;
 }
@@ -191,7 +190,7 @@
   justify-content: space-between;
   min-height: 54px;
   padding: 12px 0;
-  color: rgba(238, 244, 251, 0.75);
+  color: rgba(238, 244, 251, 0.92);
   border-bottom: 1px solid rgba(18, 61, 106, 0.45);
   background: transparent;
   text-decoration: none;
@@ -246,7 +245,7 @@
 
 .footer-notice {
   font-size: var(--text-sm);
-  color: rgba(174, 210, 240, 0.35);
+  color: rgba(174, 210, 240, 0.72);
   max-width: 580px;
   line-height: 1.65;
   font-family: var(--font-body);
@@ -255,7 +254,7 @@
 
 .footer-copyright {
   font-size: 0.65rem;
-  color: rgba(36, 104, 172, 0.45);
+  color: rgba(174, 210, 240, 0.65);
   font-family: var(--font-ui);
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -266,7 +265,7 @@
   font-size: 0.65rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(90, 150, 210, 0.35);
+  color: rgba(110, 181, 233, 0.6);
   text-decoration: none;
   transition: color 200ms ease;
   display: inline-flex;
@@ -276,17 +275,17 @@
 }
 
 .footer-made-by:hover {
-  color: rgba(90, 150, 210, 0.75);
+  color: rgba(110, 181, 233, 0.95);
 }
 
 .footer-made-by-heart {
-  color: rgba(110, 181, 233, 0.4);
+  color: rgba(110, 181, 233, 0.7);
   font-size: 0.7rem;
   transition: color 200ms ease;
 }
 
 .footer-made-by:hover .footer-made-by-heart {
-  color: rgba(110, 181, 233, 0.8);
+  color: rgba(110, 181, 233, 1);
 }
 
 .footer-made-by-brand {
