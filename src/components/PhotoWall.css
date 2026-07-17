@@ -1,0 +1,196 @@
+/* ────────────────────────────────────────────────────────────
+   Photo Wall — Curved panoramic gallery
+   Shallow arc where all images visible at once
+   ──────────────────────────────────────────────────────────── */
+
+.photo-wall {
+  position: relative;
+  width: 100%;
+  background: var(--navy);
+  color: var(--warm-white);
+  padding: clamp(3rem, 6vw, 5rem) 0 clamp(4rem, 8vw, 7rem);
+  overflow: hidden;
+}
+
+.photo-wall-container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* Header */
+.photo-wall-header {
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.photo-wall-title {
+  font-family: var(--font-welcome);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--warm-white);
+  margin: 0 0 0.75rem;
+}
+
+.photo-wall-caption {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: rgba(255, 253, 248, 0.7);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Gallery container with 3D perspective */
+.photo-wall-gallery {
+  position: relative;
+  width: 100%;
+  height: clamp(400px, 50vw, 600px);
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  touch-action: pan-y;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Individual photo items */
+.photo-wall-item {
+  position: absolute;
+  width: clamp(280px, 32vw, 460px);
+  height: clamp(200px, 23vw, 330px);
+  cursor: pointer;
+  transition: all 0.5s var(--ease-spring);
+  transform-style: preserve-3d;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  will-change: transform, opacity;
+  
+  /* Apply CSS variables set by JavaScript */
+  transform: 
+    translateZ(var(--translate-z, 80px))
+    rotateY(var(--rotate-y, 0deg))
+    scale(var(--scale, 1));
+  opacity: var(--opacity, 1);
+  filter: brightness(var(--brightness, 1));
+}
+
+.photo-wall-item:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.photo-wall-item:focus-visible {
+  outline: 2px solid var(--warm-white);
+  outline-offset: 4px;
+}
+
+.photo-wall-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Edge fading (left and right gradients) */
+.photo-wall-gallery::before,
+.photo-wall-gallery::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 15%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.photo-wall-gallery::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    var(--navy) 0%,
+    rgba(18, 28, 44, 0.7) 30%,
+    transparent 100%
+  );
+}
+
+.photo-wall-gallery::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    var(--navy) 0%,
+    rgba(18, 28, 44, 0.7) 30%,
+    transparent 100%
+  );
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .photo-wall {
+    padding: clamp(2.5rem, 5vw, 3.5rem) 0 clamp(3rem, 6vw, 4rem);
+  }
+  
+  .photo-wall-gallery {
+    height: clamp(320px, 60vw, 480px);
+    perspective: 900px;
+  }
+  
+  .photo-wall-item {
+    width: clamp(220px, 55vw, 340px);
+    height: clamp(160px, 40vw, 240px);
+  }
+  
+  .photo-wall-header {
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  
+  .photo-wall-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+  
+  .photo-wall-caption {
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+  }
+  
+  /* Stronger edge fading on mobile */
+  .photo-wall-gallery::before,
+  .photo-wall-gallery::after {
+    width: 20%;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+  .photo-wall-gallery {
+    height: clamp(280px, 70vw, 380px);
+    perspective: 700px;
+  }
+  
+  .photo-wall-item {
+    width: clamp(180px, 65vw, 280px);
+    height: clamp(130px, 48vw, 200px);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .photo-wall-item {
+    transition: opacity 0.3s ease, filter 0.3s ease;
+  }
+  
+  .photo-wall-gallery {
+    cursor: default;
+  }
+}
+
+/* Loading state */
+.photo-wall-item img {
+  background: rgba(255, 253, 248, 0.05);
+}

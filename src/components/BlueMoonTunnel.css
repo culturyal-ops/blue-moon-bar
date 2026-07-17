@@ -1,0 +1,160 @@
+/* ──────────────────────────────────────────────
+   Experience Section — cinematic hospitality
+   ────────────────────────────────────────────── */
+
+.experience-section {
+  position: relative;
+  overflow: hidden;
+  background: #06172b;
+  color: #f7f4ed;
+}
+
+/* ── Intro block ────────────────────────────── */
+.experience-heading {
+  width: min(100%, 900px);
+  margin: 0 auto;
+  padding:
+    clamp(56px, 7vw, 96px)
+    var(--gutter, 1.5rem)
+    clamp(40px, 5vw, 64px);
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+/* ── Eyebrow ─────────────────────────────────── */
+.experience-eyebrow {
+  display: block;
+  margin-bottom: 10px;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #6eb5e9;
+}
+
+/* ── Ghost title: THE BLUE MOON ──────────────────
+   White, small, tracked — a quiet signpost above */
+.experience-ghost-title {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: clamp(0.85rem, 1.6vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: rgba(247, 244, 237, 0.82);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Main title row ──────────────────────────── */
+.experience-title {
+  margin: 0;
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0;
+}
+
+/* Decorative script E — Tangerine, tall, cool blue */
+.experience-e {
+  font-family: "Tangerine", cursive;
+  font-size: clamp(5.5rem, 11vw, 10rem);
+  font-weight: 700;
+  color: #7ec8f0;
+  line-height: 0.88;
+  /* Nudge down so the script baseline aligns with the serif */
+  position: relative;
+  top: 0.1em;
+  /* Faint luminance only — not a glow */
+  filter: drop-shadow(0 0 10px rgba(110, 181, 233, 0.22));
+}
+
+/* Tight kerning — pull the E's into the middle word */
+.experience-e--left  { margin-right: -0.03em; }
+.experience-e--right { margin-left: -0.05em; }
+
+/* Middle letters — Tangerine italic reads as one fluid word */
+.experience-middle {
+  font-family: "Tangerine", cursive;
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(4rem, 8.5vw, 8rem);
+  color: #f7f4ed;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  /* Slightly smaller than the E caps so the caps feel like true initials */
+  position: relative;
+  top: 0.06em;
+}
+
+/* ── Subtitle ─────────────────────────────────── */
+.experience-subtitle {
+  margin: 14px 0 0;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-style: italic;
+  color: rgba(247, 244, 237, 0.6);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ── Gallery wrapper ─────────────────────────── */
+.dome-gallery-wrapper {
+  width: 100%;
+  max-width: 1600px;
+  height: clamp(560px, 72vh, 840px);
+  position: relative;
+  margin: 0 auto;
+  padding-bottom: clamp(48px, 6vw, 72px);
+}
+
+/* ── Mobile ──────────────────────────────────── */
+@media (max-width: 768px) {
+  .experience-heading {
+    padding:
+      clamp(40px, 6vw, 64px)
+      var(--gutter, 1.25rem)
+      clamp(32px, 5vw, 48px);
+  }
+
+  .experience-ghost-title {
+    font-size: clamp(0.7rem, 2.2vw, 1rem);
+    letter-spacing: 0.28em;
+  }
+
+  .experience-e {
+    font-size: clamp(4rem, 15vw, 6.5rem);
+  }
+
+  .experience-middle {
+    font-size: clamp(3rem, 11.5vw, 5.5rem);
+  }
+
+  .dome-gallery-wrapper {
+    height: clamp(440px, 62vh, 620px);
+  }
+}
+
+/* ── Small mobile ────────────────────────────── */
+@media (max-width: 480px) {
+  .experience-e {
+    font-size: clamp(3.4rem, 14vw, 5rem);
+  }
+
+  .experience-middle {
+    font-size: clamp(2.5rem, 10.5vw, 4.2rem);
+  }
+
+  .dome-gallery-wrapper {
+    height: clamp(380px, 58vh, 520px);
+  }
+}
+
+/* ── Reduced motion ──────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .experience-section { scroll-behavior: auto; }
+}

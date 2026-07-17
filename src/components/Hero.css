@@ -13,7 +13,7 @@
   background: #000;
 }
 
-/* Dark overlay */
+/* Dark overlay - Removed for natural video appearance */
 .hero::after {
   content: "";
   position: absolute;
@@ -22,9 +22,8 @@
   pointer-events: none;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(0, 0, 0, 0.6) 50%,
-    rgba(0, 0, 0, 0.75) 100%
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.2) 100%
   );
 }
 
@@ -47,54 +46,87 @@
 }
 
 /* ────────────────────────────────────────────────────────────
-   Circular Rotating Brand
+   Circular Rotating Brand Badge
    ──────────────────────────────────────────────────────────── */
 
 .hero-circular-wrapper {
   position: relative;
-  width: clamp(200px, 50vw, 260px);
-  height: clamp(200px, 50vw, 260px);
+  width: clamp(180px, 46vw, 240px);
+  height: clamp(180px, 46vw, 240px);
   margin-bottom: clamp(1.5rem, 4vw, 2rem);
 }
 
 .hero-circular-svg {
   width: 100%;
   height: 100%;
-  animation: rotate 30s linear infinite;
+  overflow: visible;
+}
+
+/* Only the text group rotates — rings stay still */
+.hero-circular-rotate {
+  transform-origin: 100px 100px;
+  animation: rotate 22s linear infinite;
 }
 
 @keyframes rotate {
   from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  to   { transform: rotate(360deg); }
 }
 
 .hero-circular-text {
   font-family: var(--font-ui);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  fill: rgba(255, 255, 255, 0.5);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  fill: rgba(255, 255, 255, 0.72);
   text-transform: uppercase;
 }
 
+/* Center content positioned absolutely over the SVG */
 .hero-circular-center {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.hero-circular-eyebrow {
+  font-family: var(--font-ui);
+  font-size: clamp(0.5rem, 1.2vw, 0.6rem);
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1;
 }
 
 .hero-circular-title {
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 4vw, 1.75rem);
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-size: clamp(1.1rem, 3.2vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--warm-white);
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
+  line-height: 1.05;
+  text-align: center;
+}
+
+.hero-circular-sub {
+  font-family: var(--font-ui);
+  font-size: clamp(0.5rem, 1.2vw, 0.6rem);
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(185, 218, 244, 0.7);
+  line-height: 1;
+  margin-top: 2px;
 }
 
 /* ────────────────────────────────────────────────────────────
@@ -312,8 +344,8 @@
   }
 
   .hero-circular-wrapper {
-    width: 280px;
-    height: 280px;
+    width: 250px;
+    height: 250px;
   }
 }
 
@@ -323,8 +355,8 @@
   }
 
   .hero-circular-wrapper {
-    width: 180px;
-    height: 180px;
+    width: 170px;
+    height: 170px;
   }
 
   .hero-action-card {
@@ -366,7 +398,7 @@
    ──────────────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-circular-svg {
+  .hero-circular-rotate {
     animation: none !important;
   }
 

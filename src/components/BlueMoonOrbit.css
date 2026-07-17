@@ -1,0 +1,311 @@
+/* ────────────────────────────────────────────────────────────
+   Blue Moon Orbit — Orbital photographic composition
+   Cinematic arrangement around central void
+   ──────────────────────────────────────────────────────────── */
+
+.blue-moon-orbit {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--navy);
+  background-image: radial-gradient(
+    circle at center,
+    rgba(50, 90, 130, 0.12),
+    rgba(5, 18, 34, 0) 55%
+  );
+  padding: clamp(3rem, 6vw, 5rem) var(--gutter) clamp(4rem, 8vw, 6rem);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Header */
+.orbit-header {
+  text-align: center;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  z-index: 50;
+  position: relative;
+}
+
+.orbit-title {
+  font-family: var(--font-welcome);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--warm-white);
+  margin: 0 0 0.75rem;
+}
+
+.orbit-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: rgba(255, 253, 248, 0.65);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Orbit container */
+.orbit-container {
+  position: relative;
+  width: clamp(320px, 85vw, 1400px);
+  height: clamp(400px, 65vh, 700px);
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out;
+}
+
+/* Vignette effect */
+.orbit-container::before {
+  content: '';
+  position: absolute;
+  inset: -10%;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 30%,
+    rgba(18, 28, 44, 0.3) 70%,
+    rgba(18, 28, 44, 0.6) 100%
+  );
+  pointer-events: none;
+  z-index: 40;
+}
+
+/* Central void with branding */
+.orbit-centre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 25;
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.orbit-centre-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--warm-white);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+.orbit-centre-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.75rem, 1.2vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(134, 168, 192, 0.85);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Orbital images */
+.orbit-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s var(--ease-spring);
+  transform-style: preserve-3d;
+  will-change: transform;
+  
+  /* CSS variables set by JS */
+  transform: 
+    translate(
+      calc(var(--orbit-x) - 50%),
+      calc(var(--orbit-y) - 50%)
+    )
+    translateZ(var(--orbit-translate-z))
+    rotate(var(--orbit-rotate))
+    scale(var(--orbit-scale));
+  
+  z-index: var(--orbit-z-index);
+  opacity: var(--orbit-opacity);
+  filter: 
+    brightness(var(--orbit-brightness))
+    blur(var(--orbit-blur));
+}
+
+.orbit-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  background: rgba(255, 253, 248, 0.03);
+}
+
+/* Depth layers */
+.orbit-image--front {
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+}
+
+.orbit-image--mid {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.orbit-image--back {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Focused state */
+.orbit-image--focused,
+.orbit-image:hover {
+  transform: 
+    translate(
+      calc(var(--orbit-x) - 50%),
+      calc(var(--orbit-y) - 50%)
+    )
+    translateZ(calc(var(--orbit-translate-z) + 30px))
+    rotate(var(--orbit-rotate))
+    scale(calc(var(--orbit-scale) * 1.06));
+  
+  filter: 
+    brightness(1.05)
+    blur(0px);
+  
+  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.7);
+  z-index: 100 !important;
+}
+
+/* Caption on focus */
+.orbit-image-caption {
+  position: absolute;
+  bottom: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(18, 28, 44, 0.95);
+  color: var(--warm-white);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Keyboard focus */
+.orbit-image:focus-visible {
+  outline: 2px solid rgba(255, 253, 248, 0.6);
+  outline-offset: 4px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .blue-moon-orbit {
+    min-height: 90vh;
+    padding: clamp(2.5rem, 5vw, 3.5rem) var(--gutter) clamp(3rem, 6vw, 4rem);
+  }
+  
+  .orbit-container {
+    width: 92vw;
+    height: clamp(360px, 62vh, 550px);
+    perspective: 900px;
+  }
+  
+  .orbit-centre-title {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    letter-spacing: 0.06em;
+  }
+  
+  .orbit-centre-subtitle {
+    font-size: clamp(0.7rem, 1.1vw, 0.9rem);
+    letter-spacing: 0.12em;
+  }
+  
+  .orbit-header {
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  
+  .orbit-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+  
+  .orbit-subtitle {
+    font-size: clamp(0.9rem, 1.3vw, 1rem);
+  }
+  
+  /* Adjust image sizes for mobile */
+  .orbit-image {
+    border-radius: 6px;
+  }
+  
+  .orbit-image--focused,
+  .orbit-image:hover {
+    transform: 
+      translate(
+        calc(var(--orbit-x) - 50%),
+        calc(var(--orbit-y) - 50%)
+      )
+      translateZ(calc(var(--orbit-translate-z) + 20px))
+      rotate(var(--orbit-rotate))
+      scale(calc(var(--orbit-scale) * 1.04));
+  }
+  
+  .orbit-image-caption {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.7rem;
+    bottom: -28px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .orbit-container {
+    height: clamp(320px, 58vh, 450px);
+    perspective: 700px;
+  }
+  
+  .orbit-centre-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+  }
+  
+  .orbit-centre-subtitle {
+    font-size: clamp(0.65rem, 1vw, 0.85rem);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .orbit-image {
+    transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+  }
+  
+  .orbit-container {
+    transition: none;
+  }
+  
+  /* Show static orbit positions */
+  .orbit-image {
+    animation: none;
+  }
+}
+
+/* Touch devices - prevent accidental zooms */
+@media (hover: none) and (pointer: coarse) {
+  .orbit-container {
+    touch-action: pan-y;
+  }
+  
+  .orbit-image {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Loading state */
+.orbit-image img {
+  background: rgba(255, 253, 248, 0.03);
+}

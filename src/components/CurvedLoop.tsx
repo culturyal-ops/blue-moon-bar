@@ -14,7 +14,7 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
   marqueeText = '',
   speed = 2,
   className,
-  curveAmount = 70,
+  curveAmount = 80,
   direction = 'left',
   interactive = true
 }) => {
@@ -25,71 +25,87 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
 
   const measureRef = useRef<SVGTextElement | null>(null);
   const textPathRef = useRef<SVGTextPathElement | null>(null);
-  const pathRef = useRef<SVGPathElement | null>(null);
   const [spacing, setSpacing] = useState(0);
-  const [offset, setOffset] = useState(0);
+  const lastTimeRef = useRef<number | null>(null);
   const uid = useId();
   const pathId = `curve-${uid}`;
-  
-  // Single broad upward arch: lower at edges, rises toward center
-  // Background: taller band from y=60 to y=300 (240px tall on desktop)
-  // Text: positioned at y=160 (middle of the band)
-  const bgPathD = `M0,60 Q720,${60 - curveAmount} 1440,60 L1440,300 L0,300 Z`;
-  const textPathD = `M-100,160 Q720,${160 - curveAmount} 1540,160`;
+
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const dip = isMobile ? Math.min(curveAmount * 0.6, 48) : curveAmount;
+
+  // Fixed coordinate system:
+  // ViewBox: 1440 wide × (80 + dip) tall
+  // Path starts at y=8 on both ends, dips to y=(8+dip) at center x=720
+  // Text baseline rides along this curve so letters visibly rotate
+  const VW = 1440;
+  const VH = 88 + dip;
+  const startY = 8;
+  const midY = startY + dip;
+  const pathD = `M 0,${startY} Q ${VW / 2},${midY} ${VW},${startY}`;
 
   const dragRef = useRef(false);
   const lastXRef = useRef(0);
   const dirRef = useRef<'left' | 'right'>(direction);
   const velRef = useRef(0);
+  const frameRef = useRef<number>(0);
 
-  const textLength = spacing;
-  const totalText = textLength
-    ? Array(Math.ceil(1800 / textLength) + 2)
-        .fill(text)
-        .join('')
-    : text;
-
+  const repetitions = spacing ? Math.ceil((VW * 2) / spacing) + 4 : 6;
+  const totalText = Array(repetitions).fill(text).join('');
   const ready = spacing > 0;
 
   useEffect(() => {
-    if (measureRef.current) setSpacing(measureRef.current.getComputedTextLength());
+    const measure = () => {
+      if (measureRef.current) {
+        setSpacing(measureRef.current.getComputedTextLength());
+      }
+    };
+    measure();
+    document.fonts?.ready.then(measure);
+    const observer = new ResizeObserver(measure);
+    if (measureRef.current) observer.observe(measureRef.current);
+    return () => observer.disconnect();
   }, [text, className]);
 
   useEffect(() => {
-    if (!spacing) return;
-    if (textPathRef.current) {
-      const initial = -spacing;
-      textPathRef.current.setAttribute('startOffset', initial + 'px');
-      setOffset(initial);
-    }
+    if (!spacing || !textPathRef.current) return;
+    textPathRef.current.setAttribute('startOffset', `-${spacing}px`);
   }, [spacing]);
 
   useEffect(() => {
     if (!spacing || !ready) return;
-    let frame = 0;
-    const step = () => {
+
+    const step = (time: number) => {
+      if (lastTimeRef.current === null) lastTimeRef.current = time;
+      const delta = Math.min(32, time - lastTimeRef.current);
+      lastTimeRef.current = time;
+
       if (!dragRef.current && textPathRef.current) {
-        const delta = dirRef.current === 'right' ? speed : -speed;
-        const currentOffset = parseFloat(textPathRef.current.getAttribute('startOffset') || '0');
-        let newOffset = currentOffset + delta;
-        const wrapPoint = spacing;
-        if (newOffset <= -wrapPoint) newOffset += wrapPoint;
-        if (newOffset > 0) newOffset -= wrapPoint;
-        textPathRef.current.setAttribute('startOffset', newOffset + 'px');
-        setOffset(newOffset);
+        const pps = speed * 40;
+        const move = (pps * delta) / 1000;
+        const signed = dirRef.current === 'right' ? move : -move;
+        let offset = parseFloat(textPathRef.current.getAttribute('startOffset') || '0') + signed;
+        while (offset <= -spacing) offset += spacing;
+        while (offset > 0) offset -= spacing;
+        textPathRef.current.setAttribute('startOffset', `${offset}px`);
       }
-      frame = requestAnimationFrame(step);
+      frameRef.current = requestAnimationFrame(step);
     };
-    frame = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(frame);
+
+    frameRef.current = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frameRef.current);
   }, [spacing, speed, ready]);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mq.matches) cancelAnimationFrame(frameRef.current);
+  }, []);
 
   const onPointerDown = (e: PointerEvent) => {
     if (!interactive) return;
     dragRef.current = true;
     lastXRef.current = e.clientX;
     velRef.current = 0;
-    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
   };
 
   const onPointerMove = (e: PointerEvent) => {
@@ -97,13 +113,10 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
     const dx = e.clientX - lastXRef.current;
     lastXRef.current = e.clientX;
     velRef.current = dx;
-    const currentOffset = parseFloat(textPathRef.current.getAttribute('startOffset') || '0');
-    let newOffset = currentOffset + dx;
-    const wrapPoint = spacing;
-    if (newOffset <= -wrapPoint) newOffset += wrapPoint;
-    if (newOffset > 0) newOffset -= wrapPoint;
-    textPathRef.current.setAttribute('startOffset', newOffset + 'px');
-    setOffset(newOffset);
+    let offset = parseFloat(textPathRef.current.getAttribute('startOffset') || '0') + dx;
+    while (offset <= -spacing) offset += spacing;
+    while (offset > 0) offset -= spacing;
+    textPathRef.current.setAttribute('startOffset', `${offset}px`);
   };
 
   const endDrag = () => {
@@ -112,46 +125,35 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
     dirRef.current = velRef.current > 0 ? 'right' : 'left';
   };
 
-  const cursorStyle = interactive ? (dragRef.current ? 'grabbing' : 'grab') : 'auto';
-
   return (
-    <div
-      className="curved-loop-container"
-      style={{ visibility: ready ? 'visible' : 'hidden', cursor: cursorStyle }}
-      onPointerDown={onPointerDown}
-      onPointerMove={onPointerMove}
-      onPointerUp={endDrag}
-      onPointerLeave={endDrag}
-    >
+    <div className="curved-loop">
       <svg
         className={`curved-loop-svg ${className ?? ''}`}
-        viewBox="0 0 1440 300"
-        preserveAspectRatio="none"
+        viewBox={`0 0 ${VW} ${VH}`}
+        preserveAspectRatio="xMidYMin meet"
+        width="100%"
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={endDrag}
+        onPointerLeave={endDrag}
       >
-        {/* Blue background shape with matching curve */}
-        <path
-          d={bgPathD}
-          fill="var(--navy)"
-        />
-        
+        {/* Hidden measure text */}
         <text
           ref={measureRef}
-          xmlSpace="preserve"
+          className="curved-loop-text"
           style={{ visibility: 'hidden', opacity: 0, pointerEvents: 'none' }}
+          xmlSpace="preserve"
         >
           {text}
         </text>
+
         <defs>
-          <path ref={pathRef} id={pathId} d={textPathD} fill="none" stroke="transparent" />
+          <path id={pathId} d={pathD} fill="none" />
         </defs>
+
         {ready && (
           <text xmlSpace="preserve" className="curved-loop-text">
-            <textPath
-              ref={textPathRef}
-              href={`#${pathId}`}
-              startOffset={offset + 'px'}
-              xmlSpace="preserve"
-            >
+            <textPath ref={textPathRef} href={`#${pathId}`} startOffset="0px">
               {totalText}
             </textPath>
           </text>

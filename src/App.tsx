@@ -2,7 +2,7 @@ import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import Statement from './components/Statement';
 import CurvedLoop from './components/CurvedLoop';
-import DomeGallerySection from './components/DomeGallerySection';
+import BlueMoonTunnel from './components/BlueMoonTunnel';
 import BarEditorial from './components/BarEditorial';
 import Experience from './components/Experience';
 import Food from './components/Food';
@@ -19,14 +19,17 @@ function App() {
       <main>
         <Hero />
         <Statement />
-        <CurvedLoop
-          marqueeText="KERALA PLATES ● COLD GLASSES ● LONG EVENINGS ● T.B. ROAD ● PALA ● "
-          speed={1.5}
-          curveAmount={70}
-          direction="left"
-          interactive={true}
-        />
-        <DomeGallerySection />
+        <section className="experience-marquee">
+          <CurvedLoop
+            marqueeText="COLD GLASSES ✦ KERALA PLATES ✦ LONG EVENINGS ✦ "
+            speed={1}
+            curveAmount={75}
+            direction="left"
+            interactive={true}
+            className="blue-moon-curved-text"
+          />
+        </section>
+        <BlueMoonTunnel />
         <BarEditorial />
         <Experience />
         <Food />

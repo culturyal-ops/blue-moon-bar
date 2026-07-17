@@ -58,7 +58,6 @@ export default function DomeGallerySection() {
   return (
     <section id="dome-gallery" className="dome-gallery-section">
       <div className="dome-gallery-heading">
-        <span>THE BLUE MOON EXPERIENCE</span>
         <h2>Inside the evening.</h2>
       </div>
       <div className="dome-gallery-container">

@@ -30,16 +30,17 @@ export default function BarEditorial() {
     <section className="bar-editorial" id="bar-editorial">
       {/* Editorial header */}
       <div className="bar-editorial__header">
-        <p className="bar-editorial__kicker">Blue Moon · Pala</p>
+        <p className="bar-editorial__kicker">Blue Moon · T.B. Road · Pala</p>
         <h2 className="bar-editorial__title">
-          A bar that knows<br />
-          <em>how the night should feel.</em>
+          A bar built for<br />
+          <em>the long evening.</em>
         </h2>
         <p className="bar-editorial__body">
-          Cold beers lined up. Soft conversation drifting from table to table.
-          The smell of something good coming out of the kitchen. At Blue Moon,
-          the evening doesn't rush — it opens up slowly, the way a good night should.
-          Pull up a chair on T.B. Road and let it find its pace.
+          Kerala beef dry fry. Prawns roast. Cold beer, still sweating.
+          Blue Moon on T.B. Road is the kind of place that doesn't hurry you —
+          the food comes out right, the conversation finds its own pace,
+          and the night opens up the way good ones tend to.
+          Pull up a chair. You're not in a rush.
         </p>
       </div>
 
@@ -87,8 +88,16 @@ export default function BarEditorial() {
       {/* Pull quote */}
       <div className="bar-editorial__quote">
         <blockquote>
-          "Unapologetically fun — and made for long evenings."
+          Beef dry fry, cold beer, good company —<br />
+          that's what a night in Pala should feel like.
         </blockquote>
+      </div>
+
+      {/* Bottom tag strip */}
+      <div className="bar-editorial__tags">
+        {["Kerala Beef", "Seafood", "Travancore Chicken", "Kizhi Porotta", "Al Faham", "Cold Beer", "T.B. Road"].map(tag => (
+          <span key={tag} className="bar-editorial__tag">{tag}</span>
+        ))}
       </div>
     </section>
   );

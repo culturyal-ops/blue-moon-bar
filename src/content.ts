@@ -56,6 +56,7 @@ export const blueMoonContent: BusinessContent = {
   },
   mapUrl: "https://maps.google.com/?q=9.71368,76.68428",
   openingHours: [],
+  establishedYear: "1969",
   fssai: "11323005000154",
 };
 

@@ -1,36 +1,66 @@
-.curved-loop-container {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  margin: 0;
-  padding: 0;
-  /* Ensure no gap above/below */
+/* ─────────────────────────────────────────────────────────────
+   Curved Loop — Catenary banner marquee
+   ───────────────────────────────────────────────────────────── */
+
+.curved-loop {
   display: block;
+  width: 100%;
   line-height: 0;
+  cursor: grab;
+  touch-action: pan-y;
 }
+
+.curved-loop:active { cursor: grabbing; }
 
 .curved-loop-svg {
-  width: 100%;
-  height: auto;
   display: block;
+  width: 100%;
+  height: auto;         /* height = width × (VH/VW) via viewBox */
+  overflow: hidden;
   user-select: none;
-  /* preserveAspectRatio="none" means it scales proportionally to width */
 }
 
+/* The actual text style — bold, tracked, all-caps */
 .curved-loop-text {
-  fill: var(--warm-white);
+  fill: #ffffff;
   font-family: var(--font-display);
-  /* SVG font-size is in the SVG coordinate space (viewBox 1440x300)
-     56px in a 1440-wide viewBox = ~3.9% of width, looks right on desktop.
-     On mobile the whole SVG scales down so text scales naturally. */
-  font-size: 56px;
-  font-weight: 900;
+  font-size: 88px;      /* SVG units inside 1440-wide viewBox */
+  font-weight: 800;
+  letter-spacing: 6px;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  dominant-baseline: hanging;   /* baseline at TOP of em, hangs from path */
+  text-anchor: start;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .curved-loop-container {
-    display: none;
+/* ── Section wrapper — zero gap, dark full-bleed ── */
+.experience-marquee {
+  position: relative;
+  overflow: hidden;
+  background: var(--navy);
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  /* Edge fade */
+  mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .curved-loop-text {
+    font-size: 72px;
+    letter-spacing: 4px;
   }
+}
+
+@media (max-width: 480px) {
+  .curved-loop-text {
+    font-size: 56px;
+    letter-spacing: 3px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .curved-loop { cursor: default; }
 }

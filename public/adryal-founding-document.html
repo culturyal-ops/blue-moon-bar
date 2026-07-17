@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADRYAL — Founding Document</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#efeae0;
+  --paper-2:#e7e0d2;
+  --ink:#1a1611;
+  --charcoal:#2e2a24;
+  --stone:#b7ae9c;
+  --stone-2:#8f8877;
+  --tobacco:#7c5a36;
+  --oxblood:#6b2830;
+  --steel:#535b58;
+  --line:#c9c0ae;
+  --line-dark:#54503f;
+  --serif:'Newsreader',serif;
+  --sans:'Archivo',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;}
+img{max-width:100%;display:block;}
+::selection{background:var(--oxblood);color:var(--paper);}
+
+/* ---------- LAYOUT SHELL ---------- */
+.doc{
+  display:grid;
+  grid-template-columns:64px 1fr;
+}
+.spine{
+  position:sticky;
+  top:0;
+  height:100vh;
+  border-right:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  padding:24px 0;
+  z-index:50;
+  background:var(--paper);
+}
+.spine-mark{
+  writing-mode:vertical-rl;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.12em;
+  color:var(--steel);
+}
+.spine-progress{
+  width:1px;
+  flex:1;
+  background:var(--line);
+  margin:20px 0;
+  position:relative;
+}
+.spine-progress-fill{
+  position:absolute;
+  top:0;left:0;
+  width:100%;
+  background:var(--oxblood);
+  height:0%;
+}
+.spine-count{
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--stone-2);
+  writing-mode:vertical-rl;
+}
+main{min-width:0;}
+
+.wrap{
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 48px;
+}
+@media (max-width:900px){
+  .doc{grid-template-columns:1fr;}
+  .spine{display:none;}
+  .wrap{padding:0 22px;}
+}
+
+section{
+  padding:120px 0;
+  border-bottom:1px solid var(--line);
+  position:relative;
+}
+section.tight{padding:80px 0;}
+section.dark{
+  background:var(--ink);
+  color:var(--paper);
+  border-bottom:1px solid var(--line-dark);
+}
+section.dark .eyebrow{color:var(--stone);}
+section.dark .hr{background:var(--line-dark);}
+
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--oxblood);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:28px;
+}
+.eyebrow .num{color:var(--stone-2);}
+.eyebrow::after{
+  content:'';
+  height:1px;
+  flex:1;
+  background:var(--line);
+}
+section.dark .eyebrow{color:#c99a95;}
+section.dark .eyebrow::after{background:var(--line-dark);}
+
+h1,h2,h3,h4{
+  font-family:var(--serif);
+  font-weight:500;
+  margin:0 0 0.4em;
+  line-height:1.08;
+  letter-spacing:-0.01em;
+}
+h2{font-size:clamp(32px,4.4vw,58px);}
+h3{font-size:clamp(22px,2.4vw,30px);font-weight:500;}
+.display{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(38px,6vw,84px);
+  line-height:1.02;
+  letter-spacing:-0.015em;
+}
+.display em{font-style:italic;color:var(--oxblood);}
+section.dark .display em{color:#c99a95;}
+
+p{margin:0 0 1.1em;max-width:64ch;}
+p.lede{
+  font-family:var(--serif);
+  font-size:clamp(20px,2.1vw,27px);
+  line-height:1.42;
+  max-width:38ch;
+  font-weight:400;
+}
+.max{max-width:none;}
+.lbl{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--steel);}
+.hr{height:1px;background:var(--line);border:none;margin:48px 0;}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+@media (max-width:900px){.grid2,.grid3,.grid4{grid-template-columns:1fr;}}
+
+.cols{columns:2;column-gap:56px;}
+@media (max-width:900px){.cols{columns:1;}}
+
+.card{
+  border:1px solid var(--line);
+  padding:28px;
+  background:var(--paper-2);
+}
+section.dark .card{background:#26221c;border-color:var(--line-dark);}
+.card h4{font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:0.08em;color:var(--oxblood);margin-bottom:14px;}
+section.dark .card h4{color:#c99a95;}
+
+.tag{
+  display:inline-block;
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  border:1px solid var(--line-dark);
+  padding:3px 9px;
+  margin:0 6px 6px 0;
+  color:var(--steel);
+}
+
+table{border-collapse:collapse;width:100%;font-size:14.5px;}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;}
+th{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--steel);font-weight:500;}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);}
+.tbl-wrap table{min-width:640px;}
+
+.frame{
+  border:1px solid var(--line-dark);
+  padding:18px;
+  background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(0,0,0,0.025) 10px,rgba(0,0,0,0.025) 11px);
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--steel);
+  text-align:center;
+  min-height:120px;
+  display:flex;align-items:center;justify-content:center;
+}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+.spec-strip{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0;
+  border-top:1px solid var(--line-dark);
+  border-bottom:1px solid var(--line-dark);
+}
+.spec-item{
+  flex:1 1 160px;
+  padding:16px 18px;
+  border-right:1px solid var(--line);
+}
+.spec-item:last-child{border-right:none;}
+.spec-item .lbl{margin-bottom:6px;}
+.spec-item .val{font-family:var(--mono);font-size:15px;}
+
+.founder-note{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:19px;
+  color:var(--oxblood);
+  border-left:2px solid var(--oxblood);
+  padding-left:22px;
+  margin:32px 0;
+  max-width:52ch;
+}
+section.dark .founder-note{color:#d8b3af;border-color:#c99a95;}
+
+.pull{
+  font-family:var(--serif);
+  font-size:clamp(26px,3.4vw,42px);
+  line-height:1.2;
+  max-width:24ch;
+  margin:0.6em 0;
+}
+
+.risk-row{display:grid;grid-template-columns:1fr 2fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--line);}
+.risk-row h4{font-family:var(--sans);font-weight:700;font-size:15px;margin:0 0 6px;}
+@media (max-width:760px){.risk-row{grid-template-columns:1fr;}}
+
+.nn-list{counter-reset:nn;list-style:none;padding:0;margin:0;}
+.nn-list li{
+  counter-increment:nn;
+  display:grid;grid-template-columns:56px 1fr;
+  gap:18px;
+  padding:20px 0;
+  border-bottom:1px solid var(--line-dark);
+  font-family:var(--serif);
+  font-size:19px;
+}
+.nn-list li::before{
+  content:counter(nn,decimal-leading-zero);
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--stone);
+  padding-top:4px;
+}
+
+.flywheel{display:flex;flex-direction:column;gap:0;align-items:center;}
+.fw-step{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  border:1px solid var(--line-dark);
+  padding:12px 18px;
+  text-align:center;
+  width:min(420px,100%);
+}
+.fw-arrow{font-family:var(--mono);color:var(--stone-2);padding:6px 0;}
+
+.cover{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:48px 0 60px;
+  border-bottom:1px solid var(--line);
+}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--steel);}
+.cover-mid{margin:60px 0;}
+.cover-word{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(64px,13vw,190px);
+  line-height:0.86;
+  letter-spacing:-0.02em;
+  margin:0;
+}
+.cover-sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);color:var(--oxblood);margin-top:10px;}
+.cover-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;}
+.cover-bottom p{max-width:36ch;font-size:14px;color:var(--steel);}
+
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+
+svg text{font-family:var(--mono);}
+.diagram-caption{font-family:var(--mono);font-size:11px;color:var(--steel);text-align:center;margin-top:10px;letter-spacing:0.04em;}
+
+.calc{border:1px solid var(--line-dark);padding:36px;background:var(--paper-2);}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;}
+@media (max-width:800px){.calc-grid{grid-template-columns:1fr;}}
+.field{margin-bottom:20px;}
+.field label{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--steel);margin-bottom:8px;}
+.field label span{color:var(--ink);font-size:12px;}
+input[type=range]{width:100%;accent-color:var(--oxblood);}
+input[type=number]{
+  width:100%;font-family:var(--mono);font-size:14px;padding:8px 10px;
+  border:1px solid var(--line-dark);background:var(--paper);color:var(--ink);
+}
+.result-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:14px;}
+.result-row.total{font-weight:600;border-bottom:none;border-top:1px solid var(--line-dark);padding-top:16px;margin-top:6px;}
+.result-row .k{color:var(--steel);}
+.result-row .v.neg{color:var(--oxblood);}
+
+.foot{
+  display:flex;justify-content:space-between;align-items:center;padding:36px 0;
+  font-family:var(--mono);font-size:11px;color:var(--steel);flex-wrap:wrap;gap:12px;
+}
+.sig{font-family:var(--serif);font-style:italic;font-size:26px;color:var(--ink);}
+section.dark .sig{color:var(--paper);}
+
+.two-col-text{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+@media (max-width:900px){.two-col-text{grid-template-columns:1fr;}}
+
+:focus-visible{outline:2px solid var(--oxblood);outline-offset:3px;}
+
+.vcap{
+  writing-mode:vertical-rl;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--stone-2);
+  position:absolute;
+  right:0;
+  top:120px;
+}
+@media (max-width:900px){.vcap{display:none;}}
+</style>
+</head>
+<body>
+
+<div class="doc">
+  <nav class="spine" aria-hidden="true">
+    <div class="spine-mark">ADRYAL — FOUNDING DOCUMENT</div>
+    <div class="spine-progress"><div class="spine-progress-fill" id="spineFill"></div></div>
+    <div class="spine-count" id="spineCount">§00 / 45</div>
+  </nav>
+
+  <main>
+
+  <!-- 1. OPENING COVER -->
+  <section class="cover" id="s01">
+    <div class="wrap" style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+      <div class="cover-top">
+        <span>Founding Document · Vol. I</span>
+        <span>Thiruvananthapuram → India-first</span>
+        <span id="clockDate"></span>
+      </div>
+      <div class="cover-mid">
+        <p class="cover-word">ADRYAL</p>
+        <p class="cover-sub">a fashion house, begun narrowly</p>
+        <div class="chip-row">
+          <span class="tag">Philosophy</span><span class="tag">Operating Thesis</span><span class="tag">Product Bible</span>
+          <span class="tag">Unit Economics</span><span class="tag">Go-to-Market</span><span class="tag">Founder Manifesto</span>
+        </div>
+      </div>
+      <div class="cover-bottom">
+        <p>This is not a store. It is the record of how a fashion house decided what it would be — and what it would refuse to be — before it made a single garment.</p>
+        <div class="lbl">ADRYAL RAVN<br>Founder &amp; Creative Director</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. FOUNDER DECLARATION -->
+  <section id="s02">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§02</span>Founder Declaration</div>
+      <p class="display">I am not building a brand.<br>I am building <em>a house that earns the right to grow.</em></p>
+      <div class="hr"></div>
+      <div class="two-col-text">
+        <div>
+          <p>I do not want to build another brand that looks expensive in photographs and feels ordinary in the hand. I have seen enough of those. I have owned enough of those.</p>
+          <p>I want people to pick up an ADRYAL garment and understand, before they read a single word of copy, that someone cared about the millimetres.</p>
+        </div>
+        <div>
+          <p>I know a notebook is not a moat. Trust is. I know I cannot begin with every aesthetic — I have to earn the house one garment at a time.</p>
+          <p>ADRYAL may begin with a T-shirt. But the ambition, stated plainly and without embarrassment, is a fashion house.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. PEOPLE ARE NOT AESTHETICS -->
+  <section id="s03">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§03</span>People Are Not Aesthetics</div>
+      <div class="grid2">
+        <div>
+          <h2>Every brand chooses a tribe.<br>ADRYAL chooses a <em style="font-style:italic;color:var(--oxblood)">standard.</em></h2>
+        </div>
+        <div>
+          <p class="lede" style="color:var(--steel);font-style:italic;">Streetwear. Old money. Techwear. Goth. Y2K. Vintage. Western. Japanese fashion. Minimalism. Avant-garde.</p>
+          <p>Most brands build an identity around one look and expect the customer to remain inside it. But people evolve. The person who wears oversized black denim today may want structured trousers in five years. The person obsessed with gothic clothing may fall in love with a Western bootcut. Most fashion brands punish that evolution — the customer eventually has to leave.</p>
+          <p><strong>ADRYAL's long-term belief:</strong> different aesthetics, eras, and silhouettes can coexist under one uncompromising product standard. A western bootcut jean belongs here. A heavily embroidered shirt belongs here. A heavyweight black tee belongs here. Not because they look alike — because they are made with the same seriousness.</p>
+          <div class="founder-note">This is the long-term vision. It is not the first-year go-to-market strategy. The company will not begin by launching everything. It will begin narrowly. It will earn the right to expand.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. THE PROBLEM WITH FASHION -->
+  <section id="s04">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§04</span>The Problem With Fashion</div>
+      <p class="lede">Fashion has become detached from the physical reality of garments.</p>
+      <div class="grid3" style="margin-top:40px;">
+        <div class="card"><h4>What Is Sold</h4><p>Aesthetics. Trends. Influencer campaigns. Identity. Hype. Artificial scarcity. Logo recognition. Instagram photography.</p></div>
+        <div class="card"><h4>What Arrives</h4><p>A tee that twists after washing. A ₹3,000 shirt from weak fabric. A "heavyweight" tee that feels like cardboard. Baggy jeans with no understanding of proportion.</p></div>
+        <div class="card"><h4>The Result</h4><p>A garment that looked beautiful online and feels ordinary in person. Sizing that shifts from one collection to the next. Trust that erodes one order at a time.</p></div>
+      </div>
+      <p class="pull" style="margin-top:56px;">ADRYAL's enemy is one sentence:<br><em style="color:var(--oxblood)">"It looked better in the pictures."</em></p>
+    </div>
+  </section>
+
+  <!-- 5. CLOTHES THAT FEEL LIKE CLOTHES -->
+  <section class="dark" id="s05">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§05</span>Clothes That Feel Like Clothes</div>
+      <h2>The central phrase, said plainly.</h2>
+      <p class="lede" style="max-width:44ch;">Before a customer notices the graphic, the logo, or the campaign, they should feel weight, drape, structure, texture, precision.</p>
+      <div class="spec-strip" style="margin-top:48px;">
+        <div class="spec-item"><div class="lbl">Softness</div><div class="val">where softness is needed</div></div>
+        <div class="spec-item"><div class="lbl">Rigidity</div><div class="val">where structure is needed</div></div>
+        <div class="spec-item"><div class="lbl">Finishing</div><div class="val">clean, internal, unseen</div></div>
+        <div class="spec-item"><div class="lbl">Silhouette</div><div class="val">intentional, not accidental</div></div>
+      </div>
+      <p class="pull" style="margin-top:56px;">The ultimate reaction: <em style="color:#c99a95">"This is even better in person."</em></p>
+    </div>
+  </section>
+
+  <!-- 6. WHY ADRYAL EXISTS -->
+  <section id="s06">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§06</span>Why ADRYAL Exists</div>
+      <div class="grid2">
+        <div>
+          <h3>The market is not asking for louder graphics.</h3>
+          <p>It is asking for honesty. Buyers are tired of fake-premium brands, tired of paying real money for polyester, tired of oversized blanks with logos, tired of inconsistent sizing, tired of a product that disappoints once it's out of the box.</p>
+        </div>
+        <div>
+          <h3>People don't want more fashion.</h3>
+          <p>They want fewer disappointments. That gap — between what is promised in a product photo and what arrives in a package — is the opening ADRYAL is built to close.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. THE ORIGINAL VISION -->
+  <section id="s07">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§07</span>The Original Vision</div>
+      <p class="lede">Build a fashion house for every aesthetic. Fabric libraries. Silhouette libraries. Wash libraries. A Product Bible before a single sale.</p>
+      <div class="grid4" style="margin-top:36px;">
+        <div class="card"><h4>Fabric Library</h4><p style="font-size:14px;">Every cotton. Every knit. Every denim. Every wash.</p></div>
+        <div class="card"><h4>Silhouette Library</h4><p style="font-size:14px;">TEE-01, TEE-02, SHIRT-01, JEAN-01, JEAN-02 — refined without end.</p></div>
+        <div class="card"><h4>Construction Library</h4><p style="font-size:14px;">Threads, seams, interlinings, needles, reinforcements.</p></div>
+        <div class="card"><h4>Product Bible</h4><p style="font-size:14px;">Hundreds of pages. Every standard, every lesson, preserved.</p></div>
+      </div>
+      <p style="margin-top:36px;">This was the dream, and much of it is still true. But it had a weakness — it was not yet a business.</p>
+    </div>
+  </section>
+
+  <!-- 8. THE CRITICISM -->
+  <section id="s08">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§08</span>The Criticism</div>
+      <h2>A brand cannot begin by building every system before it earns revenue.</h2>
+      <div class="grid3" style="margin-top:40px;">
+        <div class="card"><h4>No Wedge</h4><p>"Every aesthetic welcome" is a powerful long-term philosophy and a weak first collection. Customers, retailers, and ad platforms all need a specific entry point.</p></div>
+        <div class="card"><h4>Meaningless Language</h4><p>Every Indian apparel brand already says premium, luxury, craftsmanship, heavy GSM, bio-wash. The words have stopped meaning anything.</p></div>
+        <div class="card"><h4>The Wrong Moat</h4><p>Pattern blocks and fabric specs are not legally protected. Apparel can be reverse-engineered by anyone with a seam ripper and a mill contact.</p></div>
+      </div>
+      <p style="margin-top:36px;">The honest response was not to abandon the vision. It was to sequence it correctly.</p>
+    </div>
+  </section>
+
+  <!-- 9. THE STRATEGIC UPGRADE -->
+  <section id="s09">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§09</span>The Strategic Upgrade</div>
+      <div class="grid2">
+        <div>
+          <h3>What stayed</h3>
+          <p>The belief that garments should be judged by construction, not campaign. The belief that documented knowledge compounds. The belief that the customer should never feel forced out of the brand as they change.</p>
+        </div>
+        <div>
+          <h3>What changed</h3>
+          <p>"Every aesthetic" moved from Phase One to Phase Three. The moat was redefined from knowledge alone to a compounding loop of trust and execution. The company committed to a single category before expansion — proof before scale.</p>
+        </div>
+      </div>
+      <div class="founder-note">I actually think that's a stronger company than what we started with. The philosophy stays intact. The execution becomes realistic.</div>
+    </div>
+  </section>
+
+  <!-- 10. VISION VS FIRST MISSION -->
+  <section class="dark" id="s10">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§10</span>Vision vs. First Mission</div>
+      <div class="grid2">
+        <div class="card">
+          <h4>Vision — The House</h4>
+          <p class="pull" style="font-size:28px;">Build a fashion house where every aesthetic can coexist under one uncompromising product standard.</p>
+        </div>
+        <div class="card">
+          <h4>First Mission — Years 1–5</h4>
+          <p class="pull" style="font-size:28px;">Earn that reputation by becoming undeniably exceptional at one category before expanding.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. THE FIRST CATEGORY -->
+  <section id="s11">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§11</span>The First Category</div>
+      <h2>Not a full wardrobe. One garment, done obsessively.</h2>
+      <p class="lede" style="color:var(--steel);font-style:italic;">The likely first category is the T-shirt — but "one category" does not mean one product.</p>
+      <p>A commercially real launch requires two or three fits, multiple sizes, three or four core colours, and a defined fabric weight. That is already 20 to 40 inventory SKUs before a single reorder. The website — and the operating plan — must acknowledge this honestly rather than romanticise "one tee" as though inventory complexity disappears.</p>
+      <div class="hr"></div>
+      <h3>Year One sequencing</h3>
+      <div class="spec-strip">
+        <div class="spec-item"><div class="lbl">Year 1–2</div><div class="val">Tees, core fits, material refinement</div></div>
+        <div class="spec-item"><div class="lbl">Year 2–3</div><div class="val">Denim, one or two signature fits</div></div>
+        <div class="spec-item"><div class="lbl">Year 3–4</div><div class="val">Shirts, wovens</div></div>
+        <div class="spec-item"><div class="lbl">Year 4–5</div><div class="val">Jackets, knitwear, layering</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. ADRYAL TEE ARCHITECTURE -->
+  <section id="s12">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§12</span>ADRYAL Tee Architecture</div>
+      <p>A decision framework, not a finished decision. The final choice of one or two fits will come from wear-testing, not preference.</p>
+      <div class="grid3" style="margin-top:32px;">
+        <div class="card">
+          <h4>TEE 01 — The Structured Box</h4>
+          <p style="font-size:14.5px;">Strong shoulder geometry. Controlled drop shoulder. Slightly shortened body. Substantial collar. Heavy but not stiff. Holds shape away from the body — built for presence.</p>
+        </div>
+        <div class="card">
+          <h4>TEE 02 — The Relaxed Drape</h4>
+          <p style="font-size:14.5px;">Softer fabric. Longer line. Fluid movement. Less rigid shoulder. Built for comfort and fall rather than architecture.</p>
+        </div>
+        <div class="card">
+          <h4>TEE 03 — The Classic Form</h4>
+          <p style="font-size:14.5px;">Cleaner proportions. Everyday body length. Refined rather than oversized. Built to be the reliable wardrobe staple, not a statement piece.</p>
+        </div>
+      </div>
+      <p style="margin-top:28px;font-size:14px;color:var(--steel);">The company will likely launch one or two of these after testing — not all three. See §33, Go-to-Market Roadmap.</p>
+    </div>
+  </section>
+
+  <!-- 13. TARGET CUSTOMER -->
+  <section id="s13">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§13</span>Target Customer</div>
+      <h2>Two archetypes. Only one is the first customer.</h2>
+      <div class="grid2" style="margin-top:32px;">
+        <div class="card">
+          <h4>Customer A — The Fashion Obsessive</h4>
+          <p>Notices sleeve pitch, collar construction, twill direction, yarn quality, stitch density, wash character, pattern balance. Will pay significantly more for nuance. Smaller in number. Cares about process.</p>
+        </div>
+        <div class="card">
+          <h4>Customer B — The Aspirational Premium Buyer</h4>
+          <p>Not a garment engineer. Cares that the product feels better, fits better, lasts longer, receives compliments, and feels worth the price. Compares ADRYAL to Zara, H&amp;M, Uniqlo, Marks &amp; Spencer, and Indian streetwear labels.</p>
+        </div>
+      </div>
+      <p style="margin-top:28px;">ADRYAL's first commercial customer will likely be closer to <strong>Customer B</strong>, while the brand may also attract Customer A over time. Nobody will read a 500-word textile essay before buying a tee. The technical obsession must become visible through hand feel, drape, fit, photography, wash performance, packaging, and consistency — the detail lives internally; the customer experiences the result.</p>
+      <div class="hr"></div>
+      <h3>Initial hypothesis — to be validated, not assumed</h3>
+      <div class="cols" style="margin-top:16px;font-size:15px;">
+        <p>Age 18–34, urban, digitally native, India-first. Interested in fashion but frustrated with inconsistent quality. Buys fewer pieces but wants each to feel distinctive.</p>
+        <p>Has purchased from Zara, H&amp;M, Uniqlo, Indian streetwear labels, or Instagram brands. Willing to pay more when the quality difference is tangible. Values silhouette and styling over logo. Wants designer energy without luxury-house pricing.</p>
+      </div>
+      <div class="chip-row">
+        <span class="tag">Validate via interviews</span><span class="tag">Sample try-ons</span><span class="tag">Preorders</span>
+        <span class="tag">Landing-page tests</span><span class="tag">Waitlist conversion</span><span class="tag">Price sensitivity tests</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14. PRICE POSITIONING -->
+  <section id="s14">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§14</span>Price Positioning</div>
+      <h2>Price is not a feeling. It is a consequence.</h2>
+      <div class="grid3" style="margin-top:32px;">
+        <div class="card">
+          <h4>Option 1 — Accessible Premium</h4>
+          <p class="lbl" style="color:var(--ink);font-size:16px;margin-bottom:10px;">₹1,499 – ₹1,999</p>
+          <p style="font-size:14px;"><strong>Advantages:</strong> larger addressable market, easier first purchase, better for volume.<br><strong>Risks:</strong> thin room for fabric, development, returns, and QC; greater price competition.</p>
+        </div>
+        <div class="card">
+          <h4>Option 2 — Core Premium</h4>
+          <p class="lbl" style="color:var(--ink);font-size:16px;margin-bottom:10px;">₹2,200 – ₹3,200</p>
+          <p style="font-size:14px;"><strong>Advantages:</strong> room for differentiated material, still reachable, supports packaging and content.<br><strong>Risks:</strong> must prove value immediately; competes with established labels.</p>
+        </div>
+        <div class="card">
+          <h4>Option 3 — Designer-Accessible</h4>
+          <p class="lbl" style="color:var(--ink);font-size:16px;margin-bottom:10px;">₹3,500 – ₹5,500</p>
+          <p style="font-size:14px;"><strong>Advantages:</strong> room for exceptional fabric, small runs, stronger exclusivity.<br><strong>Risks:</strong> smaller pool, severe expectations, harder acquisition.</p>
+        </div>
+      </div>
+      <div class="founder-note">A sensible starting hypothesis: ₹2,200–₹3,200 for the core tee. But pricing must come from target gross margin, landed cost, returns, taxes, shipping, packaging, and acquisition cost — never from intuition. See the calculator in §17.</div>
+    </div>
+  </section>
+
+  <!-- 15. UNIT ECONOMICS -->
+  <section id="s15">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§15</span>Unit Economics</div>
+      <h2>One tee, priced at ₹2,800 — a planning example, not a quotation.</h2>
+      <div class="tbl-wrap" style="margin-top:28px;">
+        <table>
+          <thead><tr><th>Cost line</th><th>Planning range</th></tr></thead>
+          <tbody>
+            <tr><td>Fabric</td><td>₹250 – ₹450</td></tr>
+            <tr><td>Dyeing / garment wash / finishing</td><td>₹80 – ₹180</td></tr>
+            <tr><td>Cutting and stitching</td><td>₹180 – ₹350</td></tr>
+            <tr><td>Rib, trims, labels, thread</td><td>₹60 – ₹140</td></tr>
+            <tr><td>Print or embroidery</td><td>₹0 – ₹350 (style-dependent)</td></tr>
+            <tr><td>Quality control</td><td>₹20 – ₹50</td></tr>
+            <tr><td>Packaging</td><td>₹80 – ₹180</td></tr>
+            <tr><td>Inbound freight and handling</td><td>₹30 – ₹80</td></tr>
+            <tr><td>Wastage and rejection allocation</td><td>₹50 – ₹120</td></tr>
+            <tr><td>Payment gateway</td><td>≈2% – 3% of retail</td></tr>
+            <tr><td>Shipping subsidy</td><td>₹60 – ₹120</td></tr>
+            <tr><td>Return and exchange reserve</td><td>variable, by category return rate</td></tr>
+            <tr><td>GST</td><td>per applicable current apparel rate</td></tr>
+            <tr><td>Customer acquisition</td><td>variable, potentially severe</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:20px;font-size:13.5px;color:var(--steel);">These are planning ranges for early modelling only. Every line must be replaced with an actual vendor quotation before the model is trusted.</p>
+    </div>
+  </section>
+
+  <!-- 16. FIRST-YEAR CAPITAL MODELS -->
+  <section id="s16">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§16</span>First-Year Capital Models</div>
+      <h2>Three ways to fund Year One. Only one is recommended.</h2>
+      <div class="grid3" style="margin-top:32px;">
+        <div class="card">
+          <h4>Lean Proof</h4>
+          <p class="lbl" style="color:var(--ink);font-size:16px;">₹5L – ₹10L</p>
+          <p style="font-size:14px;">Founder-led. One core fit, two or three colours. Small batch or preorder. Local sampling. High founder involvement, low overhead.<br><strong>Risk:</strong> weak bargaining power, high per-unit cost, stockouts, founder overload.</p>
+        </div>
+        <div class="card" style="border-color:var(--oxblood);">
+          <h4>Controlled Premium <span style="font-size:10px;color:var(--oxblood);">— recommended</span></h4>
+          <p class="lbl" style="color:var(--ink);font-size:16px;">₹12L – ₹25L</p>
+          <p style="font-size:14px;">One to two fits, three to four colours. Better sampling and testing. Small but credible inventory. Structured ecommerce, real return buffer.<br><strong>Risk:</strong> inventory exposure, acquisition uncertainty, fixed-cost pressure.</p>
+        </div>
+        <div class="card">
+          <h4>Ambitious First-Year Build</h4>
+          <p class="lbl" style="color:var(--ink);font-size:16px;">₹30L – ₹60L+</p>
+          <p style="font-size:14px;">Multiple fit blocks, deeper fabric development, dedicated team, larger runs.<br><strong>Risk:</strong> premature scale, inventory lock-in, burning capital on brand theatre before demand exists.</p>
+        </div>
+      </div>
+      <p style="margin-top:24px;">ADRYAL should avoid the Ambitious model until demand is proven through the pilot in §34. Capital should follow evidence, not confidence.</p>
+    </div>
+  </section>
+
+  <!-- 17. CALCULATOR -->
+  <section id="s17">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§17</span>Editable Break-Even Calculator</div>
+      <h2>Change the assumptions. Watch the business change.</h2>
+      <div class="calc" style="margin-top:32px;">
+        <div class="calc-grid">
+          <div>
+            <div class="field"><label>Retail price (₹) <span id="v_price">2800</span></label><input type="range" id="i_price" min="1200" max="6000" step="50" value="2800"></div>
+            <div class="field"><label>Product cost (₹) <span id="v_cost">720</span></label><input type="range" id="i_cost" min="150" max="2200" step="10" value="720"></div>
+            <div class="field"><label>Return rate <span id="v_return">12%</span></label><input type="range" id="i_return" min="0" max="40" step="1" value="12"></div>
+            <div class="field"><label>Shipping cost / order (₹) <span id="v_ship">110</span></label><input type="range" id="i_ship" min="0" max="400" step="10" value="110"></div>
+            <div class="field"><label>Payment gateway fee <span id="v_gw">2.5%</span></label><input type="range" id="i_gw" min="0" max="5" step="0.1" value="2.5"></div>
+            <div class="field"><label>Packaging (₹) <span id="v_pack">130</span></label><input type="range" id="i_pack" min="20" max="400" step="10" value="130"></div>
+          </div>
+          <div>
+            <div class="field"><label>Monthly fixed costs (₹)</label><input type="number" id="i_fixed" value="180000"></div>
+            <div class="field"><label>Marketing cost / order (₹) <span id="v_mkt">450</span></label><input type="range" id="i_mkt" min="0" max="2000" step="10" value="450"></div>
+            <div class="field"><label>Units sold / month <span id="v_units">300</span></label><input type="range" id="i_units" min="10" max="3000" step="10" value="300"></div>
+            <div class="hr" style="margin:24px 0;"></div>
+            <div class="result-row"><span class="k">Gross margin / unit</span><span class="v" id="r_gm">—</span></div>
+            <div class="result-row"><span class="k">Contribution margin / unit (after shipping, gateway, returns, marketing)</span><span class="v" id="r_cm">—</span></div>
+            <div class="result-row"><span class="k">Monthly revenue</span><span class="v" id="r_rev">—</span></div>
+            <div class="result-row"><span class="k">Monthly gross profit</span><span class="v" id="r_gp">—</span></div>
+            <div class="result-row total"><span class="k">Monthly operating result</span><span class="v" id="r_op">—</span></div>
+            <div class="result-row"><span class="k">Break-even units / month</span><span class="v" id="r_be">—</span></div>
+          </div>
+        </div>
+      </div>
+      <p style="margin-top:18px;font-size:13px;color:var(--steel);">Model simplification: return rate is applied as a revenue and re-fulfilment cost haircut on contribution margin; it does not model second-sale recovery of returned inventory. Replace with real data as soon as it exists.</p>
+    </div>
+  </section>
+
+  <!-- 18. TEAM STRUCTURE -->
+  <section id="s18">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§18</span>Team Structure</div>
+      <div class="grid2" style="gap:32px;">
+        <div class="card"><h4>Founder / Creative Director — Adryal Ravn</h4><p style="font-size:14px;">Brand direction, product philosophy, final taste decisions, product approval, supplier relationships, commercial decisions, storytelling.</p></div>
+        <div class="card"><h4>Product Design Student</h4><p style="font-size:14px;">Research, sketches, tech packs, design iterations, sample tracking, fit comments, collection documentation.</p></div>
+        <div class="card"><h4>Pattern / Garment Student</h4><p style="font-size:14px;">Pattern development, draping, fit correction, measurement standards, block library, sample assessment.</p></div>
+        <div class="card"><h4>Textile / Material Student</h4><p style="font-size:14px;">Fabric sourcing, wash experiments, material testing, supplier records, shrinkage and colourfastness data.</p></div>
+      </div>
+      <p style="margin-top:24px;font-size:14px;color:var(--steel);">Roles overlap depending on who is available. A team of two or three exceptional students can cover all four functions in Year One.</p>
+    </div>
+  </section>
+
+  <!-- 19. LOCAL TAILORS AS PARTNERS -->
+  <section id="s19">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§19</span>Local Tailors as Product Partners</div>
+      <h2>Not cheap labour. Core product-development partners.</h2>
+      <p>A master tailor's tacit knowledge — how a collar wants to sit, how a fabric wants to be cut — may be one of ADRYAL's strongest early assets. But the limitation must be named honestly: a tailor excellent at custom garments does not automatically understand factory production consistency. Sample construction does not translate into scalable manufacturing on its own. Patterns, seam allowances, machines, and tolerances need to become production-ready before they reach a factory floor.</p>
+      <div class="flywheel" style="margin-top:40px;max-width:520px;">
+        <div class="fw-step">Local Product Lab</div><div class="fw-arrow">↓</div>
+        <div class="fw-step">Validated Pattern and Construction</div><div class="fw-arrow">↓</div>
+        <div class="fw-step">Small Production Trial</div><div class="fw-arrow">↓</div>
+        <div class="fw-step">Factory Engineering</div><div class="fw-arrow">↓</div>
+        <div class="fw-step">Pilot Batch</div><div class="fw-arrow">↓</div>
+        <div class="fw-step">Scaled Production</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 20. INDIA SOURCING MAP -->
+  <section id="s20">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§20</span>India Sourcing Map</div>
+      <h2>"Find the best supplier" is the wrong question. Build a network.</h2>
+      <div class="tbl-wrap" style="margin-top:28px;">
+        <table>
+          <thead><tr><th>Hub</th><th>Best explored for</th></tr></thead>
+          <tbody id="sourcingBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 21. SUPPLIER SCORECARD -->
+  <section id="s21">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§21</span>Supplier Scorecard</div>
+      <p>Every candidate supplier is evaluated on the same axes, before a single order is placed.</p>
+      <div class="chip-row" style="margin-top:20px;">
+        <span class="tag">Minimum order quantity</span><span class="tag">Fabric consistency</span><span class="tag">Lead time</span>
+        <span class="tag">Repeatability</span><span class="tag">Certifications</span><span class="tag">Communication</span>
+        <span class="tag">Willingness to experiment</span><span class="tag">Sample cost</span><span class="tag">Production cost</span>
+        <span class="tag">Quality tolerance</span><span class="tag">Shade consistency</span><span class="tag">Wash consistency</span>
+        <span class="tag">Defect rate</span><span class="tag">Payment terms</span><span class="tag">Capacity</span>
+        <span class="tag">Scalability</span><span class="tag">Ethical / labour standards</span><span class="tag">Geography</span>
+        <span class="tag">Backup availability</span>
+      </div>
+      <div class="tbl-wrap" style="margin-top:28px;">
+        <table>
+          <thead><tr><th>Supplier</th><th>Category</th><th>MOQ fit</th><th>Consistency</th><th>Lead time</th><th>Overall</th></tr></thead>
+          <tbody>
+            <tr><td>[Candidate A]</td><td>Knit jersey</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>[Candidate B]</td><td>Wash house</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>[Candidate C]</td><td>Garment CMT</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:14px;font-size:13px;color:var(--steel);">Left blank intentionally — this scorecard is filled during Phase 0 supplier visits, not invented at a desk.</p>
+    </div>
+  </section>
+
+  <!-- 22. FABRIC INTELLIGENCE -->
+  <section id="s22">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§22</span>Fabric Intelligence</div>
+      <h2 id="s23anchor">GSM is not quality.</h2>
+      <p class="lede">A 300 GSM tee can feel cheap. A 220 GSM tee can feel luxurious.</p>
+      <div class="chip-row" style="margin-top:20px;">
+        <span class="tag">Fibre length</span><span class="tag">Yarn quality</span><span class="tag">Yarn count</span>
+        <span class="tag">Combed vs carded cotton</span><span class="tag">Ring-spun vs open-end</span><span class="tag">Compact yarn</span>
+        <span class="tag">Knit density</span><span class="tag">Jersey vs interlock</span><span class="tag">Finishing</span>
+        <span class="tag">Compaction</span><span class="tag">Dye process</span><span class="tag">Shrinkage</span>
+        <span class="tag">Pilling</span><span class="tag">Torque</span><span class="tag">Drape</span><span class="tag">Recovery</span>
+      </div>
+      <div class="tbl-wrap" style="margin-top:28px;">
+        <table>
+          <thead><tr><th>Fabric candidate</th><th>Hand feel</th><th>Best silhouette use</th><th>Cost tier</th></tr></thead>
+          <tbody id="fabricBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 23. WASH AND FINISH LIBRARY -->
+  <section id="s23">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§23</span>Wash and Finish Library</div>
+      <p class="lede">"Bio-washed" is not enough information. A finish is chosen for a specific product goal.</p>
+      <div class="tbl-wrap" style="margin-top:28px;">
+        <table>
+          <thead><tr><th>Treatment</th><th>What it does</th><th>Watch for</th></tr></thead>
+          <tbody id="washBody"></tbody>
+        </table>
+      </div>
+      <div class="chip-row" style="margin-top:24px;">
+        <span class="tag">Softer hand</span><span class="tag">Reduced hairiness</span><span class="tag">Vintage surface</span>
+        <span class="tag">Better drape</span><span class="tag">More structure</span><span class="tag">Faster break-in</span>
+        <span class="tag">Controlled shrinkage</span><span class="tag">Cleaner colour</span><span class="tag">Faded character</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 24. SILHOUETTE ENGINEERING -->
+  <section id="s24">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§24</span>Silhouette Engineering</div>
+      <h2>Designer energy comes from proportion. Not decoration.</h2>
+      <p>The embroidery is optional. The silhouette is forever. Every measurement below has intention — none is decided by trend.</p>
+      <div class="grid3" style="margin-top:20px;">
+        <div><h4 style="font-family:var(--mono);font-size:12px;text-transform:uppercase;color:var(--oxblood);">Tee</h4><div class="chip-row">
+          <span class="tag">Neck opening</span><span class="tag">Rib height</span><span class="tag">Rib tension</span><span class="tag">Shoulder width</span><span class="tag">Shoulder drop</span><span class="tag">Sleeve pitch</span><span class="tag">Sleeve length</span><span class="tag">Chest width</span><span class="tag">Body length</span><span class="tag">Hem behaviour</span>
+        </div></div>
+        <div><h4 style="font-family:var(--mono);font-size:12px;text-transform:uppercase;color:var(--oxblood);">Jeans</h4><div class="chip-row">
+          <span class="tag">Front rise</span><span class="tag">Back rise</span><span class="tag">Hip ease</span><span class="tag">Thigh width</span><span class="tag">Knee width</span><span class="tag">Hem opening</span><span class="tag">Pocket angle</span><span class="tag">Yoke shape</span><span class="tag">Stacking</span><span class="tag">Break</span><span class="tag">Twist</span>
+        </div></div>
+        <div><h4 style="font-family:var(--mono);font-size:12px;text-transform:uppercase;color:var(--oxblood);">Shirts</h4><div class="chip-row">
+          <span class="tag">Collar stance</span><span class="tag">Collar spread</span><span class="tag">Collar roll</span><span class="tag">Armhole</span><span class="tag">Sleeve pitch</span><span class="tag">Cuff</span><span class="tag">Placket</span><span class="tag">Back pleat</span><span class="tag">Interlining</span>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 25/26 TEE + DENIM ANATOMY DIAGRAMS -->
+  <section id="s25">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§25–26</span>Tee Anatomy &amp; Denim Anatomy</div>
+      <div class="grid2">
+        <div>
+          <svg viewBox="0 0 320 380" width="100%" style="max-width:320px;" role="img" aria-label="Tee anatomy diagram">
+            <g fill="none" stroke="var(--charcoal)" stroke-width="1.4">
+              <path d="M110 40 L90 30 L40 55 L55 100 L90 85 L90 340 L230 340 L230 85 L265 100 L280 55 L230 30 L210 40 C210 60 110 60 110 40 Z"/>
+              <path d="M110 40 C110 60 210 60 210 40" />
+            </g>
+            <g stroke="var(--stone-2)" stroke-width="0.6">
+              <line x1="90" y1="30" x2="40" y2="10"/><line x1="230" y1="30" x2="280" y2="10"/>
+              <line x1="90" y1="85" x2="20" y2="85"/><line x1="230" y1="85" x2="300" y2="85"/>
+              <line x1="90" y1="340" x2="20" y2="340"/><line x1="230" y1="340" x2="300" y2="340"/>
+              <line x1="110" y1="40" x2="110" y2="15"/><line x1="210" y1="40" x2="210" y2="15"/>
+            </g>
+            <g font-size="9" fill="var(--steel)">
+              <text x="10" y="8">SHOULDER DROP</text>
+              <text x="10" y="82">CHEST — 106CM</text>
+              <text x="220" y="82">SLEEVE PITCH</text>
+              <text x="10" y="337">HEM — BODY LENGTH 71CM</text>
+              <text x="95" y="12">NECK OPENING</text>
+            </g>
+          </svg>
+          <div class="diagram-caption">FIG. 01 — TEE-01 STRUCTURED BOX, FLAT SPEC</div>
+        </div>
+        <div>
+          <svg viewBox="0 0 260 380" width="100%" style="max-width:260px;" role="img" aria-label="Denim anatomy diagram">
+            <g fill="none" stroke="var(--charcoal)" stroke-width="1.4">
+              <path d="M60 20 L200 20 L210 130 L235 350 L185 350 L150 160 L130 160 L95 350 L45 350 L70 130 Z"/>
+              <path d="M100 20 L100 50 L160 50 L160 20"/>
+              <line x1="130" y1="50" x2="130" y2="160"/>
+            </g>
+            <g stroke="var(--stone-2)" stroke-width="0.6">
+              <line x1="60" y1="20" x2="20" y2="20"/><line x1="70" y1="130" x2="20" y2="130"/>
+              <line x1="150" y1="160" x2="240" y2="160"/><line x1="235" y1="350" x2="255" y2="350"/>
+            </g>
+            <g font-size="9" fill="var(--steel)">
+              <text x="10" y="16">WAIST</text>
+              <text x="10" y="128">FRONT RISE — 27.5CM</text>
+              <text x="145" y="158">KNEE — 21CM</text>
+              <text x="185" y="347">HEM OPENING — 18CM</text>
+            </g>
+          </svg>
+          <div class="diagram-caption">FIG. 02 — JEAN-01 SIGNATURE FIT, FLAT SPEC</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 27. PRODUCT TESTING -->
+  <section id="s27">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§27</span>Product Testing</div>
+      <h2>The ADRYAL testing protocol</h2>
+      <div class="grid3" style="margin-top:28px;">
+        <div class="card"><h4>Tee Tests</h4><p style="font-size:14px;">Dimensional stability and shrinkage at 1, 5, 10, 30 washes. Collar recovery. Neck distortion. Body torque. Pilling. Colourfastness. Seam puckering. Stitch breakage. Sweat and deodorant response. Ironing and hang-dry behaviour.</p></div>
+        <div class="card"><h4>Denim Tests</h4><p style="font-size:14px;">Crocking. Shrinkage. Leg twist. Knee bagging. Waistband recovery. Zipper reliability. Button and rivet pull strength. Seam strength. Pocket-bag durability. Wash evolution. Colour bleed.</p></div>
+        <div class="card"><h4>Embroidery Tests</h4><p style="font-size:14px;">Skin irritation. Backing comfort. Thread pull. Puckering. Colour bleed. Wash stability. Distortion. Needle damage to base fabric.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 28. ADRYAL PRODUCT LAB -->
+  <section class="dark" id="s28">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§28</span>The ADRYAL Product Lab</div>
+      <h2>An evolving archive, not an expensive facility.</h2>
+      <p class="lede" style="max-width:52ch;">Fabric swatches. Wash swatches. Supplier records. Sample garments. Disassembled competitor garments. Collar tests, seam tests, stitch tests. Trims, zippers, buttons, rivets, labels, pocket bags, interlinings. Pattern blocks. Measurement charts. Fit photographs. Customer feedback. Product versions.</p>
+      <div class="hr"></div>
+      <h3>Versioning example</h3>
+      <div class="spec-strip">
+        <div class="spec-item"><div class="lbl">TEE-01 V1</div><div class="val">What changed, why, who tested</div></div>
+        <div class="spec-item"><div class="lbl">TEE-01 V2</div><div class="val">Wash + fit results, cost delta</div></div>
+        <div class="spec-item"><div class="lbl">TEE-01 V3</div><div class="val">Customer reaction, final call</div></div>
+      </div>
+      <p style="margin-top:32px;">The purpose of documentation is not to create fake secrecy. It is to stop the team from forgetting what it learned. That operational memory is the value — not the file itself.</p>
+    </div>
+  </section>
+
+  <!-- 29. PRODUCT BIBLE -->
+  <section id="s29">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§29</span>Product Bible</div>
+      <p>The memory system that helps create consistent quality over time — not the moat itself.</p>
+      <div class="grid4" style="margin-top:24px;font-size:14px;">
+        <ol style="padding-left:18px;margin:0;">
+          <li>Brand product philosophy</li><li>Fit standards</li><li>Measurement conventions</li><li>Fabric specifications</li><li>Approved suppliers</li><li>Wash specifications</li>
+        </ol>
+        <ol style="padding-left:18px;margin:0;" start="7">
+          <li>Colour standards</li><li>Stitching standards</li><li>Seam construction</li><li>Collar systems</li><li>Rib specifications</li><li>Thread standards</li>
+        </ol>
+        <ol style="padding-left:18px;margin:0;" start="13">
+          <li>Needle guidance</li><li>Embroidery standards</li><li>Print standards</li><li>Denim standards</li><li>Hardware standards</li><li>Packaging standards</li>
+        </ol>
+        <ol style="padding-left:18px;margin:0;" start="19">
+          <li>Testing requirements</li><li>QC tolerance</li><li>Defect classification</li><li>Fit feedback</li><li>Return-reason analysis</li><li>Version history</li><li>Care and longevity</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 30/31. REAL MOAT + FLYWHEEL -->
+  <section id="s30">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§30</span>The Real Moat</div>
+      <h2>A notebook is not a moat.</h2>
+      <p class="lede">Apparel can be reverse-engineered. A competitor can buy a garment, cut it apart, measure it, and take it to a mill. Pattern blocks and wash recipes are not legally protected secrets.</p>
+      <p>The moat is not the knowledge alone. It is what accumulated knowledge produces over time, combined with consistency, customer trust, supplier relationships, fit data, repeat-purchase behaviour, and operational memory. An internal notebook is not defensible. A decade of consistent products built from that notebook can be.</p>
+      <div class="founder-note">I know a notebook is not a moat. Trust is.</div>
+      <div class="hr"></div>
+      <div class="eyebrow"><span class="num">§31</span>Trust Flywheel</div>
+      <div class="flywheel" style="max-width:480px;">
+        <div class="fw-step">Product Development</div><div class="fw-arrow">↓</div>
+        <div class="fw-step">Customer Wear Data</div><div class="fw-arrow">↓</div>
+        <div class="fw-step">Fit and Material Improvements</div><div class="fw-arrow">↓</div>
+        <div class="fw-step">More Consistent Product</div><div class="fw-arrow">↓</div>
+        <div class="fw-step">Greater Customer Trust</div><div class="fw-arrow">↓</div>
+        <div class="fw-step">Higher Repeat Purchase</div><div class="fw-arrow">↓</div>
+        <div class="fw-step">More Development Capital</div><div class="fw-arrow">↓</div>
+        <div class="fw-step">Stronger Supplier Relationships</div><div class="fw-arrow">↓</div>
+        <div class="fw-step" style="border-color:var(--oxblood);">Better Product Development</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 33/34. GO TO MARKET -->
+  <section id="s33">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§33–34</span>Go-to-Market Roadmap &amp; Pilot Launch</div>
+      <div class="grid2" style="gap:28px;">
+        <div class="card"><h4>Phase 0 — Research <span style="color:var(--steel);font-weight:400;">· 6–10 wks</span></h4><p style="font-size:14px;">Interview 30–50 potential customers. Study wardrobe frustrations. Collect competitor garments. Visit suppliers. Source swatches. Build first cost model.<br><strong>Output:</strong> problem statement, price hypothesis, fabric shortlist, capital requirement.</p></div>
+        <div class="card"><h4>Phase 1 — Product Development <span style="color:var(--steel);font-weight:400;">· 8–16 wks</span></h4><p style="font-size:14px;">3–5 pattern versions. 5–10 fabrics tested. Wash and wear tests. Fit sessions. Cost each version, eliminate weak options.<br><strong>Output:</strong> final block, fabric, wash, BOM, production-ready tech pack.</p></div>
+        <div class="card"><h4>Phase 2 — Demand Validation <span style="color:var(--steel);font-weight:400;">· 4–8 wks</span></h4><p style="font-size:14px;">Editorial landing page. Process content. Waitlist. Small paid tests. Physical try-on session. Preorder and price testing.<br><strong>Output:</strong> conversion evidence, size and colour demand, price sensitivity.</p></div>
+        <div class="card"><h4>Phase 3 — Pilot Production</h4><p style="font-size:14px;">Produce 50–200 units. 100% QC. Ship to early buyers. Track returns, wash behaviour in the field, and repeat intent.</p></div>
+      </div>
+      <div class="hr"></div>
+      <div class="card"><h4>Phase 4 — Controlled Launch</h4><p style="font-size:14px;">Reorder only validated sizes and colours. Avoid unnecessary SKU expansion. Improve the product page. Introduce a second fit only after evidence. Build retention systems.</p></div>
+    </div>
+  </section>
+
+  <!-- 35. YEAR ONE P&L -->
+  <section id="s35">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§35</span>Year-One P&amp;L</div>
+      <h2>Three scenarios. No invented certainty.</h2>
+      <div class="tbl-wrap" style="margin-top:24px;">
+        <table>
+          <thead><tr><th>Assumption</th><th>Conservative</th><th>Base</th><th>Strong</th></tr></thead>
+          <tbody>
+            <tr><td>Units sold / month (avg, H2)</td><td>150</td><td>350</td><td>700</td></tr>
+            <tr><td>Average selling price</td><td>₹2,400</td><td>₹2,700</td><td>₹2,900</td></tr>
+            <tr><td>Return rate</td><td>18%</td><td>12%</td><td>8%</td></tr>
+            <tr><td>Gross margin</td><td>48%</td><td>55%</td><td>60%</td></tr>
+            <tr><td>Monthly fixed cost</td><td>₹2.2L</td><td>₹2.2L</td><td>₹2.6L</td></tr>
+            <tr><td>Approx. break-even month</td><td>Not reached in Yr 1</td><td>Month 9–10</td><td>Month 6–7</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:16px;font-size:13px;color:var(--steel);">Revenue, COGS, variable cost, and fixed-cost line items follow the structure defined in §15 and §17. Populate monthly tables once Phase 0 pricing and cost data are confirmed.</p>
+    </div>
+  </section>
+
+  <!-- 36. METRICS THAT MATTER -->
+  <section id="s36">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§36</span>What Proves ADRYAL Is Working?</div>
+      <p class="lede">Not vanity metrics. Physical proof of trust.</p>
+      <div class="chip-row" style="margin-top:20px;">
+        <span class="tag">Full-price sell-through</span><span class="tag">Return rate</span><span class="tag">Exchange rate</span>
+        <span class="tag">Fit-related return rate</span><span class="tag">Defect rate</span><span class="tag">Repeat purchase</span>
+        <span class="tag">Waitlist-to-purchase conversion</span><span class="tag">AOV</span><span class="tag">Gross margin</span>
+        <span class="tag">Contribution margin</span><span class="tag">CAC</span><span class="tag">Payback period</span>
+        <span class="tag">Size-level sell-through</span><span class="tag">Colour-level sell-through</span>
+        <span class="tag">30-day satisfaction</span><span class="tag">90-day satisfaction</span>
+        <span class="tag">Wash-performance complaints</span><span class="tag">Referral rate</span>
+      </div>
+      <p class="pull" style="margin-top:44px;">The strongest early proof is not follower count. It is customers keeping the product, wearing it repeatedly, buying again, and recommending it without being paid.</p>
+    </div>
+  </section>
+
+  <!-- 37. CONTENT STRATEGY -->
+  <section id="s37">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§37</span>Content Strategy</div>
+      <h2>Lead with process, not campaign.</h2>
+      <div class="grid3" style="margin-top:24px;font-size:14.5px;">
+        <ul style="padding-left:18px;margin:0;">
+          <li>Why this collar took six versions</li>
+          <li>What happened after 30 washes</li>
+          <li>Comparing five cotton jerseys</li>
+          <li>Why heavier is not always better</li>
+        </ul>
+        <ul style="padding-left:18px;margin:0;">
+          <li>Inside a local tailor's workshop</li>
+          <li>Building the first pattern block</li>
+          <li>Why this sleeve opening changed</li>
+          <li>How starch changes denim</li>
+        </ul>
+        <ul style="padding-left:18px;margin:0;">
+          <li>Rejected sample archive</li>
+          <li>Garment autopsy</li>
+          <li>Cost breakdown</li>
+          <li>Customer wear diary</li>
+        </ul>
+      </div>
+      <p style="margin-top:24px;">Never pretend every experiment succeeds. Failures build credibility.</p>
+    </div>
+  </section>
+
+  <!-- 38. ECOMMERCE PRODUCT EXPERIENCE -->
+  <section id="s38">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§38</span>Ecommerce Product Experience</div>
+      <p>This document is not a store. But the future product page is specified here.</p>
+      <div class="chip-row" style="margin-top:20px;">
+        <span class="tag">Exact garment measurements</span><span class="tag">Model height, weight, worn size</span>
+        <span class="tag">Front / side / back views</span><span class="tag">Movement video</span><span class="tag">Sitting &amp; walking video</span>
+        <span class="tag">Fabric close-ups</span><span class="tag">Inside construction view</span><span class="tag">Wash and care guidance</span>
+        <span class="tag">Expected ageing</span><span class="tag">Adjacent-size comparison</span><span class="tag">Precise fit description</span>
+        <span class="tag">Customer photos by height/body type</span><span class="tag">Transparent composition</span>
+        <span class="tag">Honest product limitations</span><span class="tag">Repair and care information</span>
+      </div>
+      <p style="margin-top:24px;font-style:italic;font-family:var(--serif);color:var(--oxblood);">The customer should be able to almost feel the garment through the screen.</p>
+    </div>
+  </section>
+
+  <!-- 39/40 EXPANSION + FUTURE WORLDS -->
+  <section class="dark" id="s39">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§39–40</span>Expansion Roadmap &amp; Future Collection Worlds</div>
+      <div class="spec-strip">
+        <div class="spec-item"><div class="lbl">Yr 1–2</div><div class="val">Tees, core fits</div></div>
+        <div class="spec-item"><div class="lbl">Yr 2–3</div><div class="val">Denim, signature silhouettes</div></div>
+        <div class="spec-item"><div class="lbl">Yr 3–4</div><div class="val">Shirts, wovens</div></div>
+        <div class="spec-item"><div class="lbl">Yr 4–5</div><div class="val">Jackets, knitwear, layering</div></div>
+        <div class="spec-item"><div class="lbl">Yr 5+</div><div class="val">Full wardrobe, worlds, retail, atelier</div></div>
+      </div>
+      <p style="margin-top:36px;max-width:60ch;">Once trust is earned in tees, ADRYAL may broaden — carefully. Internal collection worlds are held together by one product standard, not treated as separate theme parks:</p>
+      <div class="chip-row">
+        <span class="tag">The Archive</span><span class="tag">The Frontier</span><span class="tag">The Hollow Woods</span>
+        <span class="tag">The Crimson Court</span><span class="tag">The Neon District</span><span class="tag">The Black Atelier</span>
+        <span class="tag">The Everyday Uniform</span><span class="tag">The Ritual Series</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 41. RISKS -->
+  <section id="s41">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§41</span>Risks and Failure Modes</div>
+      <h2>Stated plainly, before they happen.</h2>
+      <div style="margin-top:28px;" id="riskList"></div>
+    </div>
+  </section>
+
+  <!-- 42. NON-NEGOTIABLES -->
+  <section id="s42">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§42</span>Non-Negotiables</div>
+      <h2>The constitution.</h2>
+      <ol class="nn-list" id="nnList" style="margin-top:28px;"></ol>
+    </div>
+  </section>
+
+  <!-- 43. THE STANDARD -->
+  <section class="dark" id="s43">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§43</span>The ADRYAL Standard</div>
+      <p class="display" style="max-width:16ch;">One standard.<br>Every world.</p>
+      <p class="lede" style="max-width:46ch;margin-top:24px;">No product receives the ADRYAL name because it is merely acceptable. Consistency outranks novelty. Trust is the real luxury.</p>
+    </div>
+  </section>
+
+  <!-- 44. FOUNDER CLOSING -->
+  <section id="s44">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">§44</span>Founder Closing Statement</div>
+      <div class="grid2">
+        <div>
+          <p class="lede">I do not want the customer to buy an identity. I want them to buy a garment they keep reaching for.</p>
+        </div>
+        <div>
+          <p>ADRYAL is not beginning with the claim that it has already mastered clothing. It is beginning with the commitment to become worthy of trust.</p>
+          <p>The company may begin with one category. One fabric. One block. One customer. One production run. But every decision contributes to something larger — a house where people are not forced into one aesthetic, where garments are respected as physical objects, and where the standard is built slowly, through material knowledge, supplier relationships, and product discipline.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 45. FINAL COVER -->
+  <section class="cover" id="s45" style="border-bottom:none;">
+    <div class="wrap" style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+      <p class="cover-word" style="font-size:clamp(48px,10vw,140px);">ADRYAL</p>
+      <p class="cover-sub" style="margin-top:6px;">one garment at a time.</p>
+      <div class="foot" style="margin-top:80px;flex-direction:column;text-align:center;">
+        <div class="sig">Adryal Ravn</div>
+        <div class="lbl">Founder and Creative Director</div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+</div>
+
+<script>
+/* ---------- DATA ---------- */
+const sourcing = [
+  ["Tiruppur","Cotton knitwear, jersey, French terry, compact cotton, garment manufacturing, bio-wash and enzyme processing, export-quality knit production"],
+  ["Coimbatore","Yarn, spinning mills, the wider cotton ecosystem, textile engineering relationships"],
+  ["Erode","Cotton fabrics, processing, woven sourcing, textile trade"],
+  ["Ahmedabad","Denim, wovens, mills, processing, large textile ecosystem"],
+  ["Surat","Synthetic fabrics, blends, technical textiles, fashion fabrics"],
+  ["Ludhiana","Knits, sweaters, winterwear, hosiery"],
+  ["Bengaluru","Apparel development, sampling, export houses, technical pattern and production support"],
+];
+document.getElementById('sourcingBody').innerHTML = sourcing.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('');
+
+const fabrics = [
+  ["180 GSM compact cotton jersey","Light, soft, breathable","Relaxed drape tees","Mid"],
+  ["220 GSM compact cotton jersey","Balanced, clean surface","Classic form tees","Mid"],
+  ["240 GSM compact cotton jersey","Substantial without stiffness","Structured box tees","Mid-high"],
+  ["260 GSM heavyweight jersey","Dense, holds shape","Presence-driven silhouettes","High"],
+  ["300 GSM dense jersey","Very structured, less airflow","Cooler-climate outerwear layers","High"],
+  ["Cotton-modal blend","Fluid, cool to the touch","Relaxed drape tees","Mid-high"],
+  ["Slub cotton","Textured, irregular surface","Character-driven pieces","Mid"],
+  ["Mercerized cotton","Subtle sheen, crisp hand","Refined classic tees","High"],
+];
+document.getElementById('fabricBody').innerHTML = fabrics.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join('');
+
+const washes = [
+  ["Bio / enzyme wash","Softens hand, reduces surface hairiness","Overprocessing weakens fabric strength"],
+  ["Silicone wash","Adds smooth, slick softness","Can mask a poor base fabric temporarily"],
+  ["Garment / stone enzyme wash","Breaks in fabric, adds vintage surface","Uneven abrasion risk on seams"],
+  ["Ozone wash","Controlled fading with lower water use","Requires precise calibration per fabric"],
+  ["Pigment dye","Cleaner, faded-in colour from day one","Colour rubs off (crocking) if under-fixed"],
+  ["Garment dye","Rich, consistent colour after construction","Shrinkage must be tested post-dye"],
+  ["Peach finish","Ultra-soft brushed surface","Can shorten fabric lifespan if overdone"],
+  ["Mercerization","Crisp hand, subtle sheen, better dye uptake","Adds cost, changes drape character"],
+];
+document.getElementById('washBody').innerHTML = washes.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
+
+const risks = [
+  ["Spending too long in R&D without selling","The company can starve chasing perfection.","Sampling cycles extend past 16 weeks with no customer contact.","Hard phase deadlines; ship the pilot even if imperfect."],
+  ["Mistaking documentation for defensibility","A notebook feels like a moat but isn't one.","Team cites the Product Bible as the reason competitors can't catch up.","Track trust and repeat-purchase metrics, not page count."],
+  ["Pricing above what the target customer will pay","Kills first-purchase conversion before quality can prove itself.","High landing-page traffic, low add-to-cart.","Test price bands in Phase 2 before committing inventory."],
+  ["Launching too many fits and colours","Fragments small inventory, increases stockouts and dead stock.","SKU count exceeds what Phase 0 demand data supports.","Cap Year One to 1–2 fits, 3–4 colours."],
+  ["Believing quality sells itself","Craft without discoverability produces silence, not sales.","Strong product, flat traffic.","Invest deliberately in content and acquisition, not just product."],
+  ["Tailor-made samples failing in factory production","A perfect sample doesn't guarantee a repeatable batch.","Pilot units show fit or construction drift from the sample.","Validate pattern in a small production trial before scaling."],
+  ["Cash-flow collapse from inventory lock-in","Capital tied up in unsold stock stalls the whole company.","Reorders outpacing actual sell-through data.","Reorder only validated sizes and colours (Phase 4)."],
+];
+document.getElementById('riskList').innerHTML = risks.map(r=>`
+  <div class="risk-row">
+    <h4>${r[0]}</h4>
+    <div>
+      <p style="margin:0 0 6px;font-size:14.5px;"><strong>Why it matters:</strong> ${r[1]}</p>
+      <p style="margin:0 0 6px;font-size:14.5px;"><strong>Early warning:</strong> ${r[2]}</p>
+      <p style="margin:0;font-size:14.5px;"><strong>Mitigation:</strong> ${r[3]}</p>
+    </div>
+  </div>`).join('');
+
+const nn = [
+  "The garment must work before decoration.",
+  "The silhouette must be intentional.",
+  "Material selection must have a reason.",
+  "GSM is never used as a substitute for quality.",
+  "Fit must be explainable.",
+  "The inside of the garment matters as much as the outside.",
+  "Wash testing happens before launch, not after complaints.",
+  "Price must be defensible against real cost, not vibes.",
+  "Product pages show the truth, including limitations.",
+  "The company documents its failures, not only its wins.",
+  "New categories are earned, not rushed.",
+  "The customer experience matters as much as the product.",
+  "No product receives the ADRYAL name because it is merely acceptable.",
+  "Consistency is more important than novelty.",
+  "Trust is the real luxury.",
+];
+document.getElementById('nnList').innerHTML = nn.map(t=>`<li>${t}</li>`).join('');
+
+/* ---------- CALCULATOR ---------- */
+const ids = ['price','cost','return','ship','gw','pack','mkt','units'];
+function fmt(n){return '₹'+Math.round(n).toLocaleString('en-IN');}
+function calc(){
+  const price = +document.getElementById('i_price').value;
+  const cost = +document.getElementById('i_cost').value;
+  const ret = +document.getElementById('i_return').value/100;
+  const ship = +document.getElementById('i_ship').value;
+  const gw = +document.getElementById('i_gw').value/100;
+  const pack = +document.getElementById('i_pack').value;
+  const mkt = +document.getElementById('i_mkt').value;
+  const units = +document.getElementById('i_units').value;
+  const fixed = +document.getElementById('i_fixed').value || 0;
+
+  document.getElementById('v_price').textContent = price;
+  document.getElementById('v_cost').textContent = cost;
+  document.getElementById('v_return').textContent = (ret*100).toFixed(0)+'%';
+  document.getElementById('v_ship').textContent = ship;
+  document.getElementById('v_gw').textContent = (gw*100).toFixed(1)+'%';
+  document.getElementById('v_pack').textContent = pack;
+  document.getElementById('v_mkt').textContent = mkt;
+  document.getElementById('v_units').textContent = units;
+
+  const gm = price - cost - pack;
+  const gatewayFee = price*gw;
+  const cmPerUnit = gm - gatewayFee - ship - mkt;
+  const cmAfterReturns = cmPerUnit*(1-ret) - (price*ret*0.15); // partial re-fulfilment/loss cost on returned units
+  const monthlyRevenue = price*units*(1-ret*0.3); // returns partially refunded not all lost
+  const monthlyGrossProfit = gm*units;
+  const monthlyOperating = cmAfterReturns*units - fixed;
+  const beUnits = cmAfterReturns>0 ? Math.ceil(fixed/cmAfterReturns) : Infinity;
+
+  document.getElementById('r_gm').textContent = fmt(gm)+' / unit';
+  document.getElementById('r_cm').textContent = fmt(cmAfterReturns)+' / unit';
+  document.getElementById('r_rev').textContent = fmt(monthlyRevenue);
+  document.getElementById('r_gp').textContent = fmt(monthlyGrossProfit);
+  const opEl = document.getElementById('r_op');
+  opEl.textContent = fmt(monthlyOperating);
+  opEl.className = 'v' + (monthlyOperating<0?' neg':'');
+  document.getElementById('r_be').textContent = isFinite(beUnits) ? beUnits.toLocaleString('en-IN')+' units' : 'not reachable at this margin';
+}
+ids.forEach(id=>{
+  const el = document.getElementById('i_'+id);
+  if(el) el.addEventListener('input', calc);
+});
+document.getElementById('i_fixed').addEventListener('input', calc);
+calc();
+
+/* ---------- REVEALS ---------- */
+document.querySelectorAll('section').forEach(s=>s.classList.add('reveal'));
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- SPINE PROGRESS ---------- */
+const sections = document.querySelectorAll('main section[id]');
+function updateSpine(){
+  const doc = document.documentElement;
+  const scrolled = (doc.scrollTop)/(doc.scrollHeight-doc.clientHeight)*100;
+  document.getElementById('spineFill').style.height = scrolled+'%';
+  let idx = 0;
+  sections.forEach((s,i)=>{ if(s.getBoundingClientRect().top < window.innerHeight*0.4) idx = i+1; });
+  document.getElementById('spineCount').textContent = '§'+String(idx).padStart(2,'0')+' / '+sections.length;
+}
+window.addEventListener('scroll', updateSpine, {passive:true});
+updateSpine();
+
+/* ---------- COVER DATE ---------- */
+document.getElementById('clockDate').textContent = new Date().toLocaleDateString('en-IN',{year:'numeric',month:'long',day:'numeric'});
+</script>
+</body>
+</html>

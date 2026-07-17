@@ -123,3 +123,13 @@ main {
     transform: none !important;
   }
 }
+
+/* Curved text styling */
+.experience-marquee {
+  background: #06172b;
+  padding: 0;
+}
+
+.blue-moon-curved-text {
+  fill: #ffffff !important;
+}

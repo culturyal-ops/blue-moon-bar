@@ -1,14 +1,25 @@
 import { useId } from 'react';
 import { motion } from 'framer-motion';
 import BackgroundVideo from './BackgroundVideo';
+import { blueMoonContent } from '../content';
 import './Hero.css';
 
 export default function Hero() {
   const circlePathId = useId();
-  
+  const ringId = useId();
+
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  // The circumference of r=82 circle ≈ 515px
+  // Each repetition of the text token must fill exactly 1 full loop
+  // We compute enough repetitions so textPath wraps perfectly
+  const token = blueMoonContent.establishedYear
+    ? `SINCE ${blueMoonContent.establishedYear} ✦ BAR ✦ KITCHEN ✦ PALA ✦ `
+    : `BLUE MOON ✦ BAR ✦ KITCHEN ✦ PALA ✦ `;
+  // Repeat 3× — enough to fill the ~515px circumference at font-size 11.5
+  const circleText = token.repeat(3);
 
   return (
     <section className="hero">
@@ -22,29 +33,67 @@ export default function Hero() {
       />
 
       <div className="hero-content">
-        {/* Circular rotating brand */}
+        {/* Circular rotating brand badge */}
         <motion.div
           className="hero-circular-wrapper"
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
+          transition={{ delay: 0.2, duration: 1, ease: [0.34, 1.56, 0.64, 1] }}
         >
-          <svg className="hero-circular-svg" viewBox="0 0 200 200" width="200" height="200">
+          <svg
+            className="hero-circular-svg"
+            viewBox="0 0 200 200"
+            aria-hidden="true"
+          >
             <defs>
+              {/* Full circle path — clockwise from 9 o'clock */}
               <path
                 id={circlePathId}
                 fill="none"
-                d="M 100, 100 m -85, 0 a 85,85 0 1,1 170,0 a 85,85 0 1,1 -170,0"
+                d="M 100,100 m -82,0 a 82,82 0 1,1 164,0 a 82,82 0 1,1 -164,0"
               />
+              {/* Outer decorative ring clip */}
+              <clipPath id={ringId}>
+                <circle cx="100" cy="100" r="98" />
+              </clipPath>
             </defs>
-            <text className="hero-circular-text">
-              <textPath href={`#${circlePathId}`} startOffset="0%">
-                BAR · KITCHEN · BAR · KITCHEN · PALA · 
-              </textPath>
-            </text>
+
+            {/* Outer thin ring */}
+            <circle
+              cx="100" cy="100" r="95"
+              fill="none"
+              stroke="rgba(255,255,255,0.18)"
+              strokeWidth="0.5"
+            />
+            {/* Inner thin ring */}
+            <circle
+              cx="100" cy="100" r="72"
+              fill="none"
+              stroke="rgba(255,255,255,0.12)"
+              strokeWidth="0.5"
+            />
+
+            {/* Rotating text group */}
+            <g className="hero-circular-rotate">
+              <text className="hero-circular-text">
+                <textPath href={`#${circlePathId}`} startOffset="0%">
+                  {circleText}
+                </textPath>
+              </text>
+            </g>
+
+            {/* Static dot ornaments at 12/3/6/9 o'clock */}
+            <circle cx="100" cy="5"   r="1.5" fill="rgba(255,255,255,0.35)" />
+            <circle cx="195" cy="100" r="1.5" fill="rgba(255,255,255,0.35)" />
+            <circle cx="100" cy="195" r="1.5" fill="rgba(255,255,255,0.35)" />
+            <circle cx="5"   cy="100" r="1.5" fill="rgba(255,255,255,0.35)" />
           </svg>
+
+          {/* Center badge content */}
           <div className="hero-circular-center">
-            <span className="hero-circular-title">BLUE MOON</span>
+            <span className="hero-circular-eyebrow">EST. {blueMoonContent.establishedYear}</span>
+            <span className="hero-circular-title">BLUE<br />MOON</span>
+            <span className="hero-circular-sub">PALA</span>
           </div>
         </motion.div>
 
