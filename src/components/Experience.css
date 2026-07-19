@@ -1,8 +1,28 @@
 .experience {
-  background: var(--warm-white);
-  padding: 96px clamp(40px, 5vw, 84px) 90px;
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 82% 18%,
+      rgba(205, 158, 76, 0.10) 0%,
+      rgba(205, 158, 76, 0) 34%
+    ),
+    radial-gradient(
+      circle at 10% 88%,
+      rgba(34, 68, 101, 0.08) 0%,
+      rgba(34, 68, 101, 0) 38%
+    ),
+    linear-gradient(
+      180deg,
+      #f8f5ef 0%,
+      #f3f0e9 52%,
+      #eef1f2 100%
+    );
+  padding: 96px clamp(40px, 5vw, 84px) 90px;
 }
+
+
 
 .experience-container {
   width: min(1500px, 100%);

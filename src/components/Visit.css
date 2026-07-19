@@ -3,22 +3,27 @@
    ───────────────────────────────────────────────────────────── */
 
 .visit {
-  background: #f8f9fb;
-  color: var(--ink);
   position: relative;
+  isolation: isolate;
   overflow: hidden;
-}
-
-/* Subtle light-blue radial tint top-right */
-.visit::before {
-  content: '';
-  position: absolute;
-  top: -100px;
-  right: -100px;
-  width: clamp(300px, 55vw, 700px);
-  height: clamp(300px, 55vw, 700px);
-  background: radial-gradient(ellipse, rgba(185, 218, 244, 0.18) 0%, transparent 65%);
-  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 82% 18%,
+      rgba(205, 158, 76, 0.10) 0%,
+      rgba(205, 158, 76, 0) 34%
+    ),
+    radial-gradient(
+      circle at 10% 88%,
+      rgba(34, 68, 101, 0.08) 0%,
+      rgba(34, 68, 101, 0) 38%
+    ),
+    linear-gradient(
+      180deg,
+      #f8f5ef 0%,
+      #f3f0e9 52%,
+      #eef1f2 100%
+    );
+  color: var(--ink);
 }
 
 /* Thin top separator */

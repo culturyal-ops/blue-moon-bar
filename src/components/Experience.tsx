@@ -32,7 +32,7 @@ export default function Experience() {
             {!shouldReduceMotion && (
               <div className="experience-circular-badge">
                 <CircularText
-                  text="PALA · KERALA · T.B. ROAD · "
+                  text="COLD GLASSES ✦ KERALA PLATES ✦ LONG EVENINGS ✦ "
                   spinDuration={35}
                 />
               </div>
