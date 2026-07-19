@@ -1,25 +1,96 @@
-.statement {
-  padding: clamp(4rem, 6vw, 5rem) var(--gutter);
-  background: var(--warm-white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+/* ─────────────────────────────────────────────────────────────
+   Hospitality Film — Cinematic video section
+   Full video background · overlaid text · warm white typography
+   ───────────────────────────────────────────────────────────── */
+
+.hospitality-film {
   position: relative;
+  width: 100%;
+  min-height: 720px;
   overflow: hidden;
-  min-height: auto;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
 }
 
-.statement-text {
-  font-family: var(--font-welcome);
-  font-size: clamp(1.75rem, 4vw, 2.75rem);
-  line-height: 1.1;
-  color: var(--navy);
+.hospitality-film__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -3;
+}
+
+.hospitality-film__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(4, 15, 28, 0.24) 0%,
+    rgba(4, 15, 28, 0.48) 42%,
+    rgba(4, 15, 28, 0.22) 100%
+  );
+  z-index: -2;
+}
+
+.hospitality-film__content {
+  width: min(900px, calc(100% - 40px));
+  text-align: center;
+  color: #ffffff;
+}
+
+.hospitality-film__content h2 {
+  margin: 0;
+  font-family: "Barlow Condensed", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(4.5rem, 8vw, 8rem);
   font-weight: 700;
-  letter-spacing: 0.03em;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
   text-transform: uppercase;
-  max-width: 600px;
-  overflow-wrap: break-word;
-  word-break: break-word;
-  font-style: normal;
+  color: #ffffff;
+}
+
+.hospitality-film__content p {
+  max-width: 360px;
+  margin: 32px auto 0;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: rgba(247, 242, 233, 0.88);
+  text-wrap: balance;
+}
+
+@media (max-width: 640px) {
+  .hospitality-film {
+    min-height: 620px;
+    margin-bottom: 36px;
+  }
+  
+  .hospitality-film__content {
+    width: calc(100% - 32px);
+    transform: translateY(-35px);
+  }
+  
+  .hospitality-film__content h2 {
+    font-size: clamp(3.2rem, 14vw, 5rem);
+  }
+  
+  .hospitality-film__content p {
+    max-width: 300px;
+    margin-top: 24px;
+  }
+
+  .hospitality-film__video {
+    object-position: center;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hospitality-film__content {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

@@ -5,8 +5,7 @@
 @import './reset.css';
 @import './motion.css';
 
-/* Load fonts */
-@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600&family=Anton&family=Sacramento&family=Alice&display=swap');
+/* (unused font imports removed for performance) */
 
 /* Global body styling */
 body {
@@ -21,7 +20,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Editorial grainy gradient background */
+/* Editorial grainy gradient background — static, no animation */
 body::before {
   content: '';
   position: fixed;
@@ -31,41 +30,14 @@ body::before {
   height: 100%;
   z-index: -1;
   background: 
-    /* Editorial paper texture */
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.06'/%3E%3C/svg%3E"),
-    /* Editorial gradient - subtle blue tones */
-    linear-gradient(
-      135deg,
-      #f8f9fb 0%,
-      #f2f7fc 25%,
-      #e8f1fa 50%,
-      #d4e6f8 75%,
-      #f2f7fc 100%
-    );
-  background-size: 
-    300px 300px,  /* editorial paper texture size */
-    400% 400%;    /* gradient size for animation */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E"),
+    linear-gradient(135deg, #f8f9fb 0%, #eef4fc 50%, #f2f7fc 100%);
+  background-size: 300px 300px, 100% 100%;
   background-blend-mode: overlay;
-  animation: gradientShift 30s ease-in-out infinite;
+  /* No animation — saves mobile GPU */
 }
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 0%, 0% 0%;
-  }
-  25% {
-    background-position: 100% 100%, 25% 50%;
-  }
-  50% {
-    background-position: 0% 100%, 50% 100%;
-  }
-  75% {
-    background-position: 100% 0%, 75% 50%;
-  }
-  100% {
-    background-position: 0% 0%, 100% 0%;
-  }
-}
+/* Kill the unused animated font imports */
 
 /* Editorial typography base */
 h1, h2, h3, h4, h5, h6 {

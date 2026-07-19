@@ -1,12 +1,14 @@
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import { motion } from 'framer-motion';
 import BackgroundVideo from './BackgroundVideo';
+import MenuOverlay from './MenuOverlay';
 import { blueMoonContent } from '../content';
 import './Hero.css';
 
 export default function Hero() {
   const circlePathId = useId();
   const ringId = useId();
+  const [isMenuOverlayOpen, setIsMenuOverlayOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -24,7 +26,7 @@ export default function Hero() {
   return (
     <section className="hero">
       <BackgroundVideo
-        videoSrc="/herogallery/hero-video.mp4"
+        videoSrc="/herogallery/hero video.mp4"
         posterSrc="/hero-poster.svg"
         objectPositionDesktop="center center"
         objectPositionMobile="center center"
@@ -194,7 +196,38 @@ export default function Hero() {
             <circle cx="12" cy="10" r="3" />
           </svg>
         </motion.button>
+
+        {/* Menu Toggle Button */}
+        <motion.button
+          type="button"
+          className="hero-menu-toggle"
+          onClick={() => setIsMenuOverlayOpen(true)}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+        >
+          <span className="hero-menu-toggle-text">MENU CATEGORIES</span>
+          <svg
+            className="hero-menu-toggle-icon"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </motion.button>
       </div>
+
+      {/* Menu Overlay */}
+      <MenuOverlay 
+        isVisible={isMenuOverlayOpen}
+        onToggle={() => setIsMenuOverlayOpen(!isMenuOverlayOpen)}
+      />
     </section>
   );
 }

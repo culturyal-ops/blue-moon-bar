@@ -36,13 +36,34 @@
 .experience-marquee {
   position: relative;
   overflow: hidden;
-  background: var(--navy);
+  background: #06172b;
   padding: 0;
   margin: 0;
   line-height: 0;
-  /* Edge fade */
-  mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
+  /* NO mask-image — it creates white rectangles where the page bg shows through */
+}
+
+/* Navy fade overlays replacing the mask — match section background exactly */
+.experience-marquee::before,
+.experience-marquee::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10%;
+  min-width: 60px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.experience-marquee::before {
+  left: 0;
+  background: linear-gradient(to right, #06172b 0%, transparent 100%);
+}
+
+.experience-marquee::after {
+  right: 0;
+  background: linear-gradient(to left, #06172b 0%, transparent 100%);
 }
 
 /* ── Mobile ── */

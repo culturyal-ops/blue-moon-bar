@@ -1,24 +1,43 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import './Statement.css';
 
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.7, delay, ease: [0.25, 0.46, 0.45, 0.94] as const },
+});
+
 export default function Statement() {
   const shouldReduceMotion = useReducedMotion();
-
-  const M = shouldReduceMotion ? 'div' : motion.div;
+  const wrap = (props: object) => (shouldReduceMotion ? {} : props);
 
   return (
-    <section className="statement">
-      <M
-        className="statement-text"
-        {...(!shouldReduceMotion && {
-          initial: { opacity: 0, y: 30 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true },
-          transition: { duration: 0.8, ease: [0.2, 0.6, 0.3, 1] }
-        })}
+    <section className="hospitality-film">
+      <video
+        className="hospitality-film__video"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
       >
-        WELCOME TO<br />BLUE MOON
-      </M>
+        <source src="/video.mp4" type="video/mp4" />
+      </video>
+      
+      <div className="hospitality-film__shade" />
+      
+      <motion.div className="hospitality-film__content" {...wrap(fadeUp(0.14))}>
+        <h2>
+          COME HUNGRY.
+          <br />
+          LEAVE LATE.
+        </h2>
+        
+        <p>
+          Full tables. Cold glasses. Evenings that rarely end on time.
+        </p>
+      </motion.div>
     </section>
   );
 }

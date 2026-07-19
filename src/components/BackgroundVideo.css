@@ -15,8 +15,6 @@
   height: 100%;
   object-fit: cover;
   object-position: var(--object-position-desktop, center center);
-  /* Subtle filter - preserve video quality */
-  filter: contrast(1.02) saturate(0.95) brightness(0.92);
 }
 
 .background-video {

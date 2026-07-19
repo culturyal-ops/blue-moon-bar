@@ -12,10 +12,12 @@ export default function Experience() {
       <div className="experience-container">
         <div className="experience-content">
           <ScrollReveal index={0}>
-            <h2 className="experience-title">{aboutText.intro}</h2>
+            <h2 className="experience-main-title">{aboutText.intro}</h2>
           </ScrollReveal>
           <ScrollReveal index={1}>
-            <p className="experience-description">{aboutText.description}</p>
+            <p className="experience-description">
+              Blue Moon brings together Kerala favourites, Indo‑Chinese plates and an easy-going evening atmosphere in the centre of Pala.
+            </p>
           </ScrollReveal>
         </div>
         

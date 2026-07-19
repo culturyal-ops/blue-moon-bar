@@ -322,6 +322,57 @@
 }
 
 /* ────────────────────────────────────────────────────────────
+   Menu Toggle Button
+   ──────────────────────────────────────────────────────────── */
+
+.hero-menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: clamp(0.875rem, 2vw, 1rem) clamp(1.25rem, 3vw, 1.5rem);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: clamp(0.5rem, 2vw, 0.75rem);
+  cursor: pointer;
+  transition: all 0.3s var(--ease-out);
+  width: 100%;
+  min-height: var(--touch-target-comfortable);
+  margin-top: clamp(0.75rem, 2vw, 1rem);
+}
+
+.hero-menu-toggle:hover {
+  background: rgba(185, 218, 244, 0.15);
+  border-color: rgba(185, 218, 244, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-menu-toggle:active {
+  transform: translateY(0);
+}
+
+.hero-menu-toggle-text {
+  font-family: var(--font-ui);
+  font-size: clamp(0.8125rem, 2vw, 0.9375rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--warm-white);
+}
+
+.hero-menu-toggle-icon {
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.7);
+  transition: transform 0.3s var(--ease-out);
+}
+
+.hero-menu-toggle:hover .hero-menu-toggle-icon {
+  transform: scale(1.1);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ────────────────────────────────────────────────────────────
    Responsive Design
    ──────────────────────────────────────────────────────────── */
 

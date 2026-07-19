@@ -1,36 +1,39 @@
 .experience {
-  padding: var(--section-spacing) var(--gutter);
   background: var(--warm-white);
+  padding: 96px clamp(40px, 5vw, 84px) 90px;
   position: relative;
 }
 
 .experience-container {
-  max-width: var(--container-max);
-  margin: 0 auto;
+  width: min(1500px, 100%);
+  margin-inline: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-10);
-  align-items: start;
+  grid-template-columns: minmax(360px, 0.85fr) minmax(620px, 1.15fr);
+  align-items: center;
+  gap: clamp(64px, 7vw, 110px);
 }
 
 .experience-content {
-  max-width: 520px;
-  padding-top: var(--space-8);
+  align-self: center;
+  max-width: 580px;
 }
 
-.experience-title {
+.experience-main-title {
+  margin: 0;
   font-size: clamp(2rem, 4.5vw, 4rem);
   font-family: var(--font-display);
-  margin-bottom: var(--space-6);
-  color: var(--navy);
+  color: #000000 !important;
   font-weight: 700;
   letter-spacing: -0.01em;
   text-transform: uppercase;
   line-height: 1;
   overflow-wrap: break-word;
+  -webkit-text-fill-color: #000000 !important;
 }
 
 .experience-description {
+  margin-top: 34px;
+  max-width: 540px;
   font-size: var(--text-lg);
   line-height: var(--leading-relaxed);
   color: var(--color-text-muted);
@@ -38,6 +41,7 @@
 
 /* Image Grid Layout */
 .experience-grid {
+  align-self: center;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-4);
@@ -92,6 +96,10 @@
 
 /* ── Tablet ── */
 @media (max-width: 968px) {
+  .experience {
+    padding: 80px clamp(40px, 5vw, 60px) 70px;
+  }
+
   .experience-container {
     grid-template-columns: 1fr;
     gap: var(--space-8);
@@ -99,7 +107,6 @@
 
   .experience-content {
     max-width: 100%;
-    padding-top: 0;
   }
 
   .experience-grid {
@@ -109,15 +116,62 @@
 
 /* ── Mobile ── */
 @media (max-width: 640px) {
+  .experience {
+    padding: 52px 0 32px;
+  }
+
+  .experience-container {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .experience-content {
+    max-width: 100%;
+    padding: 0 28px;
+  }
+
+  .experience-main-title {
+    margin: 0;
+    font-size: clamp(2.75rem, 12vw, 3rem);
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+    text-align: left;
+  }
+
+  .experience-description {
+    max-width: 31rem;
+    margin: 32px 0 0;
+    font-size: 1.15rem;
+    line-height: 1.65;
+  }
+
   .experience-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 160px;
-    gap: var(--space-3);
+    display: block;
+    margin-top: 44px;
+  }
+
+  .grid-item {
+    display: none;
   }
 
   .grid-item-large {
-    grid-column: span 2;
-    grid-row: span 1;
+    display: block;
+    position: relative;
+    width: calc(100% - 40px);
+    aspect-ratio: 4 / 3;
+    margin: 0 20px;
+    border-radius: 18px;
+    overflow: hidden;
+  }
+
+  .grid-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .experience-circular-badge {
+    display: none;
   }
 }
 

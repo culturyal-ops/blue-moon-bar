@@ -14,49 +14,45 @@
   width: min(100%, 900px);
   margin: 0 auto;
   padding:
-    clamp(56px, 7vw, 96px)
+    clamp(48px, 6vw, 80px)
     var(--gutter, 1.5rem)
-    clamp(40px, 5vw, 64px);
+    clamp(32px, 4vw, 56px);
   text-align: center;
   position: relative;
-  z-index: 10;
+  z-index: 1;
 }
-
-/* ── Eyebrow ─────────────────────────────────── */
-.experience-eyebrow {
-  display: block;
-  margin-bottom: 10px;
-  font-family: var(--font-ui);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: #6eb5e9;
-}
-
-/* ── Ghost title: THE BLUE MOON ── (removed) */
 
 /* ── Main title ──────────────────────────────── */
 .experience-title {
-  margin: 0 0 12px;
-  font-family: var(--font-display);
-  font-size: clamp(3.5rem, 9vw, 8rem);
+  display: block;
+  margin: 0 0 20px;
+  /* Bold geometric grotesk — no curves, no flourish */
+  font-family: "Barlow Condensed", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(4rem, 10vw, 9rem);
   font-weight: 800;
-  line-height: 1;
+  line-height: 0.92;
   letter-spacing: -0.02em;
-  color: #f7f4ed;
+  text-transform: uppercase;
+  color: #f3efe8;
   text-align: center;
+  /* Hard fill — no blends, no transparent anything */
+  -webkit-text-fill-color: #f3efe8;
+  mix-blend-mode: normal;
+  opacity: 1;
+  visibility: visible;
 }
 
 /* ── Subtitle ─────────────────────────────────── */
 .experience-subtitle {
-  margin: 14px 0 0;
-  font-family: var(--font-body);
-  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
   font-style: italic;
-  color: rgba(247, 244, 237, 0.6);
+  font-weight: 400;
+  color: rgba(243, 239, 232, 0.7);
   text-align: center;
   line-height: 1.5;
+  letter-spacing: 0.01em;
 }
 
 /* ── Gallery wrapper ─────────────────────────── */
@@ -69,16 +65,17 @@
   padding-bottom: clamp(48px, 6vw, 72px);
 }
 
+/* ── Mobile ──────────────────────────────────── */
 @media (max-width: 768px) {
   .experience-heading {
     padding:
-      clamp(40px, 6vw, 64px)
+      clamp(36px, 5vw, 56px)
       var(--gutter, 1.25rem)
-      clamp(32px, 5vw, 48px);
+      clamp(28px, 4vw, 44px);
   }
 
   .experience-title {
-    font-size: clamp(2.5rem, 13vw, 5rem);
+    font-size: clamp(2.5rem, 11vw, 4.5rem);
   }
 
   .dome-gallery-wrapper {
@@ -89,7 +86,7 @@
 /* ── Small mobile ────────────────────────────── */
 @media (max-width: 480px) {
   .experience-title {
-    font-size: clamp(2.2rem, 14vw, 3.5rem);
+    font-size: clamp(2rem, 12vw, 3rem);
   }
 
   .dome-gallery-wrapper {
