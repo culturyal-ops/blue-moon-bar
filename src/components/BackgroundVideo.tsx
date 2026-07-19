@@ -3,6 +3,7 @@ import './BackgroundVideo.css';
 
 interface BackgroundVideoProps {
   videoSrc: string;
+  videoSrcMobile?: string;
   posterSrc: string;
   objectPositionDesktop?: string;
   objectPositionMobile?: string;
@@ -12,6 +13,7 @@ interface BackgroundVideoProps {
 
 export default function BackgroundVideo({
   videoSrc,
+  videoSrcMobile,
   posterSrc,
   objectPositionDesktop = 'center center',
   objectPositionMobile = 'center center',
@@ -104,6 +106,11 @@ export default function BackgroundVideo({
           '--object-position-mobile': objectPositionMobile,
         } as React.CSSProperties}
       >
+        {/* Desktop video (landscape) */}
+        <source src={videoSrc} type="video/mp4" media="(min-width: 768px)" />
+        {/* Mobile video (portrait) - fallback to desktop if not provided */}
+        <source src={videoSrcMobile || videoSrc} type="video/mp4" media="(max-width: 767px)" />
+        {/* Fallback for older browsers */}
         <source src={videoSrc} type="video/mp4" />
         {/* Fallback image if video fails */}
         <img src={posterSrc} alt="" />

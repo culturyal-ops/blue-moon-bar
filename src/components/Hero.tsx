@@ -27,6 +27,7 @@ export default function Hero() {
     <section className="hero">
       <BackgroundVideo
         videoSrc="/herogallery/hero video.mp4"
+        videoSrcMobile="/herogallery/hero-portrait video.mp4"
         posterSrc="/hero-poster.svg"
         objectPositionDesktop="center center"
         objectPositionMobile="center center"
