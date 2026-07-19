@@ -13,19 +13,7 @@
   background: #000;
 }
 
-/* Dark overlay - Removed for natural video appearance */
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.1) 0%,
-    rgba(0, 0, 0, 0.2) 100%
-  );
-}
+/* No overlay — video plays unobstructed */
 
 /* ────────────────────────────────────────────────────────────
    Content Container

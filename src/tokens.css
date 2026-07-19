@@ -63,8 +63,8 @@
        Elegant serif for descriptions
      ═══════════════════════════════════════════════════════════ */
 
-  /* All Titles - Rounded geometric (like NURA/SOLEN) */
-  --font-display: "Outfit", system-ui, sans-serif;
+  /* All Titles - Elegant serif display (Playfair Display) */
+  --font-display: "Playfair Display", Georgia, serif;
   
   /* Hero/Logo - Same rounded geometric */
   --font-hero: "Outfit", system-ui, sans-serif;

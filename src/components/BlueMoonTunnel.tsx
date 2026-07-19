@@ -46,11 +46,8 @@ export default function BlueMoonTunnel() {
     <section className="experience-section" aria-label="Blue Moon image gallery">
       <header className="experience-heading">
         <span className="experience-eyebrow">BLUE MOON · PALA</span>
-        <p className="experience-ghost-title" aria-hidden="true">THE BLUE MOON</p>
         <h2 className="experience-title" aria-label="Experience">
-          <span className="experience-e experience-e--left" aria-hidden="true">E</span>
-          <span className="experience-middle" aria-hidden="true">xperienc</span>
-          <span className="experience-e experience-e--right" aria-hidden="true">E</span>
+          Experience
         </h2>
         <p className="experience-subtitle">A room full of long evenings.</p>
       </header>

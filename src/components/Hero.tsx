@@ -28,7 +28,7 @@ export default function Hero() {
         posterSrc="/hero-poster.svg"
         objectPositionDesktop="center center"
         objectPositionMobile="center center"
-        overlay={true}
+        overlay={false}
         playbackRate={0.75}
       />
 
